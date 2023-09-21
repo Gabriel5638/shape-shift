@@ -20,7 +20,9 @@ body {
 }
 
 .logo-font {
+    color: #222;
     text-transform: uppercase;
+    border: 2px solid #333;
 }
 
 .main-logo-link {
@@ -48,8 +50,13 @@ body {
     color: white;
 }
 
-.text-black {
-    color: #000 !important;
+.white-text{
+    color: #fff;
+    letter-spacing: 9px;
+    
+}
+.color-black{
+    color: #222;
 }
 
 .border-black {
