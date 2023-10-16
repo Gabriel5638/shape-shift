@@ -27,9 +27,13 @@ def all_products(request):
     return render(request, 'store/all_products.html', context)
 
 
-def product_list(request):
-    products = Product.objects.all()
+def women_products(request):
+    products = Product.objects.filter(category='Women')
     return render(request, 'clothes/women.html', {'products': products})
+
+def men_product_list(request):  
+    products = Product.objects.filter(category='Men')  
+    return render(request, 'clothes/men.html', {'products': products})
 
 def product_detail(request, product_id):
     # Retrieve the product based on the provided product_id
