@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-    path('store/', include('store.urls')),  # Include the URLs for the "store" app here
+    path('store/', include('store.urls')),  
+    path('diet/', include('diet.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
