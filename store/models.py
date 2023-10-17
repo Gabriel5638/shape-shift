@@ -7,6 +7,7 @@ class Product(models.Model):
     CATEGORY_CHOICES = [
         ('Men', 'Men'),
         ('Women', 'Women'),
+        ('Accessories', 'Accessories'),
     ]
 
     name = models.CharField(max_length=255)

@@ -35,6 +35,10 @@ def men_product_list(request):
     products = Product.objects.filter(category='Men')  
     return render(request, 'clothes/men.html', {'products': products})
 
+def Keychain_products(request):
+    products = Product.objects.filter(category="Accessories")
+    return render(request, 'store/keychains.html', {'products': products})
+
 def product_detail(request, product_id):
     # Retrieve the product based on the provided product_id
     product = get_object_or_404(Product, pk=product_id)
