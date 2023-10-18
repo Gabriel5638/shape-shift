@@ -19,6 +19,15 @@ body {
 .image-container video:hover {
     pointer-events: none;
 }
+/* container that includes the main text */
+.ase-container{
+    background-color: #B3B3B3;
+    background-blend-mode: overlay;
+    color: #000;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
 
 
 

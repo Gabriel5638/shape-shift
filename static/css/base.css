@@ -10,6 +10,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.main-text {
+    background-color: #000;
+}
+
 .website-description {
     color: #fff;
     font-size: 19px;
