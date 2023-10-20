@@ -1,1 +1,1 @@
-media/diets/carnivorevid.mp4 filter=lfs diff=lfs merge=lfs -text
+media/diets/*.mp4 filter=lfs diff=lfs merge=lfs -text
