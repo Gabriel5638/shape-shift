@@ -49,37 +49,37 @@ def wriststraps_products(request):
 
 def yogamats_products(request):
     products = Product.objects.filter(category="Yogamats")
-    return render(request, 'store/yogamats', {'products': products})
+    return render(request, 'store/yogamats.html', {'products': products})
 
 
 def foamrollers_products(request):
     products = Product.objects.filter(category="foamrollers")
-    return render(request, 'store/foamrollers', {'products': products})
+    return render(request, 'store/foamrollers.html', {'products': products})
 
 
 def protein_products(request):
     products = Product.objects.filter(category="protein")
-    return render(request, 'store/protein', {'products': products})
+    return render(request, 'store/protein.html', {'products': products})
 
 
 def creatine_products(request):
     products = Product.objects.filter(category="creatine")
-    return render(request, 'store/creatine', {'products': products})
+    return render(request, 'store/creatine.html', {'products': products})
 
 
 def electrolytes_products(request):
     products = Product.objects.filter(category="electrolytes")
-    return render(request, 'store/electrolytes', {'products': products})
+    return render(request, 'store/electrolytes.html', {'products': products})
 
 
 def preworkout_products(request):
     products = Product.objects.filter(category="preworkout")
-    return render(request, 'store/preworkout', {'products': products})
+    return render(request, 'store/preworkout.html', {'products': products})
 
 
 def postworkout_products(request):
     products = Product.objects.filter(category="postworkout")
-    return render(request, 'store/postworkout', {'products': products})
+    return render(request, 'store/postworkout.html', {'products': products})
 
 
 def product_detail(request, product_id):
