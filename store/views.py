@@ -31,13 +31,56 @@ def women_products(request):
     products = Product.objects.filter(category='Women')
     return render(request, 'clothes/women.html', {'products': products})
 
+
 def men_product_list(request):  
     products = Product.objects.filter(category='Men')  
     return render(request, 'clothes/men.html', {'products': products})
 
-def Keychain_products(request):
-    products = Product.objects.filter(category="Accessories")
+
+def keychain_products(request):
+    products = Product.objects.filter(category="Keychains")
     return render(request, 'store/keychains.html', {'products': products})
+
+
+def wriststraps_products(request):
+    products = Product.objects.filter(category="Wriststraps")
+    return render(request, 'store/wriststraps.html', {'products': products})
+
+
+def yogamats_products(request):
+    products = Product.objects.filter(category="Yogamats")
+    return render(request, 'store/yogamats', {'products': products})
+
+
+def foamrollers_products(request):
+    products = Product.objects.filter(category="foamrollers")
+    return render(request, 'store/foamrollers', {'products': products})
+
+
+def protein_products(request):
+    products = Product.objects.filter(category="protein")
+    return render(request, 'store/protein', {'products': products})
+
+
+def creatine_products(request):
+    products = Product.objects.filter(category="creatine")
+    return render(request, 'store/creatine', {'products': products})
+
+
+def electrolytes_products(request):
+    products = Product.objects.filter(category="electrolytes")
+    return render(request, 'store/electrolytes', {'products': products})
+
+
+def preworkout_products(request):
+    products = Product.objects.filter(category="preworkout")
+    return render(request, 'store/preworkout', {'products': products})
+
+
+def postworkout_products(request):
+    products = Product.objects.filter(category="postworkout")
+    return render(request, 'store/postworkout', {'products': products})
+
 
 def product_detail(request, product_id):
     # Retrieve the product based on the provided product_id

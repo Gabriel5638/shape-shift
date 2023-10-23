@@ -34,11 +34,11 @@
                 Supplements
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="supplements-link">
-                <a href="" class="dropdown-item">Protein</a>
-                <a href="" class="dropdown-item">Creatine</a>
-                <a href="" class="dropdown-item">Electrolytes</a>
-                <a href="" class="dropdown-item">Pre-Workout</a>
-                <a href="" class="dropdown-item">Post-Workout</a>
+                <a href="{% url 'protein_products' %}" class="dropdown-item">Protein</a>
+                <a href="{% url 'creatine_products' %}" class="dropdown-item">Creatine</a>
+                <a href="{% url 'electrolytes_products' %}" class="dropdown-item">Electrolytes</a>
+                <a href="{% url 'preworkout_products' %}" class="dropdown-item">Pre-Workout</a>
+                <a href="{% url 'postworkout_products' %}" class="dropdown-item">Post-Workout</a>
             </div>
         </li>
 
@@ -59,9 +59,9 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="accessories-link">
                 <a href="{% url 'keychain_products' %}" class="dropdown-item">Keychains</a>
-                <a href="" class="dropdown-item">Wrist Straps</a>
-                <a href="" class="dropdown-item">Yoga Mats</a>
-                <a href="" class="dropdown-item">Foam Rollers</a>
+                <a href="{% url 'wriststraps_products' %}" class="dropdown-item">Wrist Straps</a>
+                <a href="{% url 'yogamats_products' %}" class="dropdown-item">Yoga Mats</a>
+                <a href="{% url 'foamrollers_products' %}" class="dropdown-item">Foam Rollers</a>
             </div>
         </li>
 

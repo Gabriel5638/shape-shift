@@ -7,7 +7,15 @@ class Product(models.Model):
     CATEGORY_CHOICES = [
         ('Men', 'Men'),
         ('Women', 'Women'),
-        ('Accessories', 'Accessories'),
+        ('Keychains', 'Keychains'),
+        ('Wriststraps', 'Wriststraps'),
+        ('Yogamats', 'Yogamats'),
+        ('Foamrollers', 'Foamrollers'),
+        ('Protein', 'Protein'),
+        ('Creatine', 'Creatine'),
+        ('Electrolytes', 'Electrolytes'),
+        ('Preworkout', 'Preworkout'),
+        ('Postworkout', 'Postworkout'),
     ]
 
     name = models.CharField(max_length=255)
