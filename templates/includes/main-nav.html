@@ -21,11 +21,11 @@
                 Workout Routines
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="workouts-link">
-                <a href="" class="dropdown-item">Push-Pull-Legs</a>
-                <a href="" class="dropdown-item">German Volume Training</a>
-                <a href="" class="dropdown-item">The Texas Method</a>
-                <a href="" class="dropdown-item">Juggernaut Method</a>
-                <a href="" class="dropdown-item">StrongLifts 5x5</a>
+                <a href="{% url 'workouts:push' %}" class="dropdown-item">Push-Pull-Legs</a>
+                <a href="{% url 'workouts:volume' %}" class="dropdown-item">German Volume Training</a>
+                <a href="{% url 'workouts:texas' %}" class="dropdown-item">The Texas Method</a>
+                <a href="{% url 'workouts:juggernaut' %}" class="dropdown-item">Juggernaut Method</a>
+                <a href="{% url 'workouts:stronglifts' %}" class="dropdown-item">StrongLifts 5x5</a>
             </div>
         </li>
 

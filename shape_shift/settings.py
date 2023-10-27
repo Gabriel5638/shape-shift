@@ -31,11 +31,6 @@ ALLOWED_HOSTS = ['8000-gabriel5638-shapeshift-x58zh4ih5aq.ws-eu105.gitpod.io']
 
 
 
-# Cloudinary configuration
-CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
-CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
-CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +47,7 @@ INSTALLED_APPS = [
     'home',
     'store',
     'diet',
+    'workouts',
 ]
 
 MIDDLEWARE = [
