@@ -53,32 +53,32 @@ def yogamats_products(request):
 
 
 def foamrollers_products(request):
-    products = Product.objects.filter(category="foamrollers")
+    products = Product.objects.filter(category="Foamrollers")
     return render(request, 'store/foamrollers.html', {'products': products})
 
 
 def protein_products(request):
-    products = Product.objects.filter(category="protein")
+    products = Product.objects.filter(category="Protein")
     return render(request, 'store/protein.html', {'products': products})
 
 
 def creatine_products(request):
-    products = Product.objects.filter(category="creatine")
+    products = Product.objects.filter(category="Creatine")
     return render(request, 'store/creatine.html', {'products': products})
 
 
 def electrolytes_products(request):
-    products = Product.objects.filter(category="electrolytes")
+    products = Product.objects.filter(category="Electrolytes")
     return render(request, 'store/electrolytes.html', {'products': products})
 
 
 def preworkout_products(request):
-    products = Product.objects.filter(category="preworkout")
+    products = Product.objects.filter(category="Preworkout")
     return render(request, 'store/preworkout.html', {'products': products})
 
 
 def postworkout_products(request):
-    products = Product.objects.filter(category="postworkout")
+    products = Product.objects.filter(category="Postworkout")
     return render(request, 'store/postworkout.html', {'products': products})
 
 
