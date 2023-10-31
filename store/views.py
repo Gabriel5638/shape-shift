@@ -6,22 +6,43 @@ from django.db.models import Q
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
+    # Start with the default queryset of all products
     products = Product.objects.all()
-    query = None
 
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-                return redirect(reverse('all_products'))
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
-            products = products.filter(queries)
+    # Define default sorting options
+    sort = request.GET.get('sort', 'name')  # Default to sorting by name
+    direction = request.GET.get('direction', 'asc')  # Default to ascending order
+
+    # Handle sorting based on user input
+    if sort == 'name':
+        field_to_sort = 'name'
+    elif sort == '-name':
+        field_to_sort = '-name'  # Adjust the value to match the HTML
+    elif sort == 'price':
+        field_to_sort = 'price'
+    elif sort == '-price':
+        field_to_sort = '-price'  # Adjust the value to match the HTML
+    else:
+        field_to_sort = 'name'  # Default to sorting by name
+
+    # Apply sorting direction
+    if direction == 'desc':
+        field_to_sort = '-' + field_to_sort  # Add '-' for descending order
+
+    # Apply sorting to the queryset
+    products = products.order_by(field_to_sort)
+
+    # Handle search queries
+    query = request.GET.get('q', None)
+    if query:
+        queries = Q(name__icontains=query) | Q(description__icontains=query)
+        products = products.filter(queries)
 
     context = {
         'products': products,
         'search_term': query,
+        'sort': sort,
+        'direction': direction,
     }
 
     return render(request, 'store/all_products.html', context)

@@ -94,9 +94,10 @@
 
 {% block page_header %}
     <div class="container mt-3">
-        <h1 class="logo-font">All Products</h1>
+        <hr class="w-80 mb-5">
+        <hr class="w-80 mb-5">
+        <hr class="w-80 mb-4">
         <!-- Add a separate container here to push down the images -->
-        <div class="container-for-spacing"></div>
     </div>
 {% endblock %}
 
@@ -107,6 +108,17 @@
         <div class="col text-center mt-3">
             <h2 class="logo-font">All Products</h2>
             <hr class="w-50 mb-1">
+            <form method="get" action="{% url 'all_products' %}" class="sorting-form">
+                <label for="sort">Sort by:</label>
+                <select name="sort" id="sort">
+                    <option value="name" {% if request.GET.sort == 'name' %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="-name" {% if request.GET.sort == '-name' %}selected{% endif %}>Name (Z-A)</option>
+                    <option value="price" {% if request.GET.sort == 'price' %}selected{% endif %}>Price (Low to High)</option>
+                    <option value="-price" {% if request.GET.sort == '-price' %}selected{% endif %}>Price (High to Low)</option>
+                    <!-- Add more sorting options as needed -->
+                </select>
+                <input type="submit" value="Sort">
+            </form>
         </div>
     </div>
     <div class="row">
@@ -162,9 +174,9 @@
     </div>
 </div>
 <!-- Searchbar -->
-<footer class="container-fluid bg-dark text-white py-4 mt-5">
+<footer class="container-fluid bg-dark text-white py-2 mt-5">
     <div class="row">
-        <div class="col-lg-4 my-auto py-1 py-lg-0">
+        <div class="col-lg-8 my-auto py-1 py-lg-0">
             <form method="GET" action="{% url 'all_products' %}">
                 <div class="input-group w-100">
                     <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
@@ -178,7 +190,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-8 text-right">
+        <div class="col-lg-4 text-right">
             <a href="https://www.facebook.com/profile.php?id=61552389658110" class="fa fa-facebook fa-2x m-2" target="_blank"></a> 
             <a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr fa-2x m-2" target="_blank"></a> 
             <a href="https://www.reddit.com/" class="fa fa-reddit fa-2x m-2" target="_blank"></a>  
