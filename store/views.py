@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product
 from django.contrib import messages
 from django.db.models import Q
+#from .forms import CommentForm make comment form#
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
