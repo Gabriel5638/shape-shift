@@ -17,5 +17,5 @@ urlpatterns = [
     path('preworkout/', views.preworkout_products, name='preworkout_products'),
     path('postworkout/', views.postworkout_products, name='postworkout_products'),
     path('products/<int:product_id>/', views.product_detail, name='product_detail'),
-    path('all-products/', views.all_products, name='all_products'), 
+    path('all-products/', views.all_products, name='all_products'),    
 ]
