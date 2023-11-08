@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
 from django.contrib import messages
 from django.db.models import Q
@@ -118,3 +118,40 @@ def product_detail(request, product_id):
 
     # Return the rendered template with the context data
     return render(request, 'store/product_detail.html', {'product': product, 'related_products': related_products})
+
+def add_to_bag(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        quantity = int(request.POST.get('quantity'))
+
+        if quantity > 0:
+            bag = request.session.get('bag', {})
+            bag_item = bag.get(product_id, 0)
+            bag[product_id] = bag_item + quantity
+            request.session['bag'] = bag
+            return redirect(request.META.get('HTTP_REFERER'))
+
+    return HttpResponseBadRequest("Invalid request")
+
+def view_bag(request):
+    # Retrieve bag items from the session
+    bag = request.session.get('bag', {})
+
+    # Create a list of bag items with product details
+    bag_items = []
+    total = 0
+
+    for product_id, quantity in bag.items():
+        product = get_object_or_404(Product, pk=product_id)
+        total += product.price * quantity
+        bag_items.append({
+            'product': product,
+            'quantity': quantity,
+        })
+
+    context = {
+        'bag_items': bag_items,
+        'total': total,
+    }
+
+    return render(request, 'store/bag.html', context)
