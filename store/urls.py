@@ -18,6 +18,4 @@ urlpatterns = [
     path('postworkout/', views.postworkout_products, name='postworkout_products'),
     path('products/<int:product_id>/', views.product_detail, name='product_detail'),
     path('all-products/', views.all_products, name='all_products'),  
-    path('add_to_bag/<int:product_id>/', views.add_to_bag, name='add_to_bag'),
-    path('bag/', views.view_bag, name='view_bag'),
 ]
