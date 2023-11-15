@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
     'home',
     'store',
     'diet',
@@ -76,6 +77,9 @@ TEMPLATES = [
                 'django.template.context_processors.request', #required for allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
             ],
         },
     },
@@ -167,6 +171,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
