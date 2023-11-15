@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-)k6*nf6l_gl7*7%kvta*b#j7u*ag6z_cm8--m01@_orqb7uj5z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-gabriel5638-shapeshift-9ixmpbyflye.ws-eu106.gitpod.io']
+ALLOWED_HOSTS = ['localhost', '8000-gabriel5638-shapeshift-9ixmpbyflye.ws-eu106.gitpod.io']
 
 
 
@@ -53,12 +53,12 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -176,3 +176,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
+
+CSRF_COOKIE_SECURE = False 
+
+
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
