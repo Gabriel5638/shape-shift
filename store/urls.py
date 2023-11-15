@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import contact_form, contact_submit
 
 urlpatterns = [
     path('men/', views.men_product_list, name='men_products'),
@@ -18,4 +19,6 @@ urlpatterns = [
     path('postworkout/', views.postworkout_products, name='postworkout_products'),
     path('products/<int:product_id>/', views.product_detail, name='product_detail'),
     path('all-products/', views.all_products, name='all_products'),  
+    path('contact/', contact_form, name='contact_form'),
+    path('contact_submit/', contact_submit, name='contact_submit'),
 ]

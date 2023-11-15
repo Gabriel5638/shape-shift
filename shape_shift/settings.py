@@ -54,10 +54,11 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -66,17 +67,17 @@ ROOT_URLCONF = 'shape_shift.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ 
+        'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'), 
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', #required for allauth
-                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.request',  # required for allauth
                 'django.contrib.messages.context_processors.messages',
+                'django.contrib.auth.context_processors.auth',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -173,4 +174,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 

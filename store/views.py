@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
-from django.contrib import messages
 from django.db.models import Q
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
 #from .forms import CommentForm make comment form#
 
 def all_products(request):
@@ -103,6 +106,38 @@ def postworkout_products(request):
     products = Product.objects.filter(category="Postworkout")
     return render(request, 'store/postworkout.html', {'products': products})
 
+
+
+def contact_form(request):
+    return render(request, 'contact_form.html')
+
+
+def contact_submit(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # You can customize this email content as needed
+        email_content = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        # Replace the following with your email sending logic
+        send_mail(
+            'New Contact Form Submission',
+            email_content,
+            'your@example.com',  # Replace with your email address
+            ['recipient@example.com'],  # Replace with the recipient's email address
+            fail_silently=False,
+        )
+
+        # Add success message
+        messages.success(request, 'Your message was successfully submitted!')
+
+        # Redirect after successful submission
+        return HttpResponseRedirect(reverse('contact_form'))
+
+    # Handle GET requests or other cases
+    return HttpResponseRedirect(reverse('contact_form'))
 
 def product_detail(request, product_id):
     # Retrieve the product based on the provided product_id
