@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from .forms import ContactForm
 #from .forms import CommentForm make comment form#
 
 def all_products(request):
@@ -107,37 +108,43 @@ def postworkout_products(request):
     return render(request, 'store/postworkout.html', {'products': products})
 
 
+def add_to_cart(request, product_id):
+    # Retrieve the product based on the product_id
+    product = get_object_or_404(Product, pk=product_id)
 
-def contact_form(request):
-    return render(request, 'contact_form.html')
+    # Get the cart from the session or create an empty cart
+    cart = request.session.get('cart', {})
+    
+    # Update the cart with the product details
+    cart[product_id] = {
+        'id': product.id,
+        'name': product.name,
+        'price': product.price,
+        # Add any other details you want in the cart
+    }
+
+    # Save the updated cart back to the session
+    request.session['cart'] = cart
+
+    # Redirect the user after adding the product to the cart
+    return redirect('product_detail', product_id=product_id)
 
 
-def contact_submit(request):
+def success_view(request):
+    return render(request, 'sucess.html')
+
+def contact_view(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the form data (e.g., send email, save to database)
+            # Add your logic here
 
-        # You can customize this email content as needed
-        email_content = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-
-        # Replace the following with your email sending logic
-        send_mail(
-            'New Contact Form Submission',
-            email_content,
-            'your@example.com',  # Replace with your email address
-            ['recipient@example.com'],  # Replace with the recipient's email address
-            fail_silently=False,
-        )
-
-        # Add success message
-        messages.success(request, 'Your message was successfully submitted!')
-
-        # Redirect after successful submission
-        return HttpResponseRedirect(reverse('contact_form'))
-
-    # Handle GET requests or other cases
-    return HttpResponseRedirect(reverse('contact_form'))
+            # Redirect to the 'success' URL after successful form submission
+            return redirect('sucess')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
 
 def product_detail(request, product_id):
     # Retrieve the product based on the provided product_id
