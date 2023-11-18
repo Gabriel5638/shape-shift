@@ -36,8 +36,22 @@
                     <button type="submit">Add Comment</button>
                 </form>
 
+                {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if invalid_rating_message %}
+
+    <div class="invalid-rating-message">
+        <p>{{ invalid_rating_message }}</p>
+    </div>
+{% endif %}
+
                 <!-- Rating Form -->
-                <h2>Add Rating</h2>
+                <h2>Add Rating from 1-10</h2>
                 <form action="{% url 'add_rating' product_id=product.id %}" method="post">
                     {% csrf_token %}
                     {{ rating_form.as_p }}
@@ -57,6 +71,11 @@
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </div>
         </div>
+        {% if not request.user.is_authenticated %}
+        <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment or rating.</p>
+        {% else %}
+        <p>Tip: Please add either a comment or a rating at a time.</p>
+    {% endif %}
 
         <!-- Displaying Comments and Ratings -->
         <div class="row">

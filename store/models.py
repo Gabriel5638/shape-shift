@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 def product_image_path(instance, filename):
     return f'products/{instance.category.lower()}/{filename}'
@@ -38,5 +39,12 @@ class Comment(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings')
-    rating = models.IntegerField(default=0)  # You can set the range based on your rating system (1-5 stars, for instance)
-    # You might want to add fields like 'review' for more detailed ratings/reviews
+    
+    # Updated rating field with validators
+    rating = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(1, message='Rating should be greater than or equal to 1.'),
+            MaxValueValidator(10, message='Rating should be less than or equal to 10.')
+        ]
+    )

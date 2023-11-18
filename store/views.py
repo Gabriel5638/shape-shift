@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import ContactForm, CommentForm, RatingForm
+from django.contrib import messages
 
 
 def all_products(request):
@@ -148,7 +149,7 @@ def contact_view(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
 
-@login_required
+
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
@@ -200,26 +201,32 @@ def add_comment(request, product_id):
             new_comment.user = request.user
             new_comment.product = product
             new_comment.save()
-            return JsonResponse({'success': True})  # Return a success response or redirect
+            messages.success(request, 'Comment added successfully!')
+        return redirect('product_detail', product_id=product_id)
     else:
         form = CommentForm()
     return render(request, 'add_comment.html', {'form': form})
 
+
 @login_required
 def add_rating(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)  
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
             new_rating = form.save(commit=False)
             new_rating.user = request.user
             new_rating.product = product
-            new_rating.save()
-            return JsonResponse({'success': True})  # Return a success response or redirect
+            
+            if 1 <= new_rating.rating <= 10:
+                new_rating.save()
+                messages.success(request, 'Rating added successfully!')
+            else:
+                messages.error(request, 'Invalid rating. Please provide a rating between 1 and 10.')
+        else:
+            messages.error(request, 'Invalid rating. Please provide a rating between 1 and 10.')
     else:
         form = RatingForm()
-    return render(request, 'add_rating.html', {'form': form})
-
-
+    return redirect('product_detail', product_id=product_id)
 
 
