@@ -16,8 +16,10 @@ urlpatterns = [
     path('electrolytes/', views.electrolytes_products, name='electrolytes_products'),
     path('preworkout/', views.preworkout_products, name='preworkout_products'),
     path('postworkout/', views.postworkout_products, name='postworkout_products'),
-    path('products/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('store/product_detail/<int:product_id>/', views.product_detail, name='product_detail'),
     path('all-products/', views.all_products, name='all_products'),  
     path('contact/', views.contact_view, name='contact'),
     path('contact/sucess/', views.success_view, name='sucess'),
+    path('add_comment/<int:product_id>/', views.add_comment, name='add_comment'),
+    path('add_rating/<int:product_id>/', views.add_rating, name='add_rating'),
 ]

@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product
+from .models import Product, Comment, Rating
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from .forms import ContactForm
-#from .forms import CommentForm make comment form#
+from .forms import ContactForm, CommentForm, RatingForm
+
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -146,18 +148,78 @@ def contact_view(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
 
+@login_required
 def product_detail(request, product_id):
-    # Retrieve the product based on the provided product_id
     product = get_object_or_404(Product, pk=product_id)
 
-    # Example additional logic:
-    # You can add logic to display related products.
+    # Comment handling
+    if request.method == 'POST' and 'comment_form' in request.POST:
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.product = product
+            new_comment.user = request.user
+            new_comment.save()
+            return redirect('product_detail', product_id=product_id)
+    else:
+        comment_form = CommentForm()
 
-    # For example, retrieve related products based on the product's category
-    related_products = Product.objects.filter(category=product.category).exclude(pk=product_id)[:3]
+    # Rating handling
+    if request.method == 'POST' and 'rating_form' in request.POST:
+        rating_form = RatingForm(request.POST)
+        if rating_form.is_valid():
+            new_rating = rating_form.save(commit=False)
+            new_rating.product = product
+            new_rating.user = request.user
+            new_rating.save()
+            return redirect('product_detail', product_id=product_id)
+    else:
+        rating_form = RatingForm()
 
-    #  add more logic here as needed, such as displaying reviews, calculating discounts, etc.
+    # Fetch comments and ratings related to this product
+    comments = Comment.objects.filter(product=product)
+    ratings = Rating.objects.filter(product=product)
 
-    # Return the rendered template with the context data
-    return render(request, 'store/product_detail.html', {'product': product, 'related_products': related_products})
+    context = {
+        'product': product,
+        'comment_form': comment_form,
+        'rating_form': rating_form,
+        'comments': comments,
+        'ratings': ratings,
+    }
+    return render(request, 'product_detail.html', context)
+
+
+@login_required
+def add_comment(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.product = product
+            new_comment.save()
+            return JsonResponse({'success': True})  # Return a success response or redirect
+    else:
+        form = CommentForm()
+    return render(request, 'add_comment.html', {'form': form})
+
+@login_required
+def add_rating(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            new_rating = form.save(commit=False)
+            new_rating.user = request.user
+            new_rating.product = product
+            new_rating.save()
+            return JsonResponse({'success': True})  # Return a success response or redirect
+    else:
+        form = RatingForm()
+    return render(request, 'add_rating.html', {'form': form})
+
+
+
 
