@@ -3,6 +3,8 @@ from .models import Product, Comment, Rating
 from .models import CartItem
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+import json 
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -11,6 +13,8 @@ from django.contrib import messages
 from .forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from django.contrib import messages
 from decimal import Decimal
+from django.core.serializers import serialize
+from django.forms.models import model_to_dict
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -288,7 +292,7 @@ def add_to_cart_view(request, product_id):
             )
             if not created:
                 cart_item.quantity += selected_quantity
-                cart_item.price += product_price  # Add the price for the quantity
+                cart_item.price += product_price
                 cart_item.save()
         else:
             # Use session for anonymous users
@@ -296,14 +300,14 @@ def add_to_cart_view(request, product_id):
             item_key = f'{product_id}_{selected_size}'
             if item_key in session_cart:
                 session_cart[item_key]['quantity'] += selected_quantity
-                session_cart[item_key]['price'] = product_price  # Update the price for the quantity
+                session_cart[item_key]['price'] = float(product_price)  # Convert Decimal to float for serialization
             else:
                 session_cart[item_key] = {
                     'product_id': product_id,
                     'size': selected_size,
                     'quantity': selected_quantity,
                     'image': product_image,
-                    'price': product_price  # Include the price in the session cart item
+                    'price': float(product_price)  # Convert Decimal to float for serialization
                 }
             request.session['cart'] = session_cart
             
@@ -313,39 +317,27 @@ def add_to_cart_view(request, product_id):
         pass
     
 
+
 def view_cart(request):
     user = request.user
-    size_form = SizeSelectionForm()  # Instantiate the SizeSelectionForm
-    quantity_form = ProductQuantityForm()  # Instantiate the ProductQuantityForm
 
     if user.is_authenticated:
         cart_items = CartItem.objects.filter(user=user)
     else:
-        # For anonymous users, retrieve cart items from the session
         session_cart = request.session.get('cart', {})
-        cart_items = []
-        for key, value in session_cart.items():
-            product_id = value['product_id']
-            product = Product.objects.get(pk=product_id)  # Assuming Product is your product model
+        session_product_ids = [value['product_id'] for value in session_cart.values()]
+        cart_items = CartItem.objects.filter(product__id__in=session_product_ids)
 
-            cart_item = {
-                'product': {
-                    'name': product.name,
-                    'description': product.description,
-                    # Add other necessary details
-                },
-                'size': value['size'],
-                'quantity': value['quantity'],
-                'image': value['image'],
-                'price': value['price']
-            }
-            cart_items.append(cart_item)
+    # Assuming you've fetched the cart items and created the forms as previously shown
 
-    return render(request, 'cart.html', {
+    # Create instances of the forms
+    size_form = SizeSelectionForm()
+    quantity_form = ProductQuantityForm()
+
+    context = {
         'cart_items': cart_items,
         'size_form': size_form,
         'quantity_form': quantity_form
-    })
-    
+    }
 
-
+    return render(request, 'cart.html', context)
