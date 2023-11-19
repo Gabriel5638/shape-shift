@@ -20,14 +20,40 @@ class Product(models.Model):
         ('Postworkout', 'Postworkout'),
     ]
 
+    SIZE_CHOICES = [
+        ('Small', 'Small'),
+        ('Medium', 'Medium'),
+        ('Large', 'Large'),
+    ]
+
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to=product_image_path)
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='Men')
-    description = models.TextField() 
+    description = models.TextField()
+    size = models.CharField(max_length=50, choices=SIZE_CHOICES, blank=True, null=True)
 
-    def __str__(self):
+    def __str__(self):  
         return self.name
+    
+class ProductQuantity(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    size = models.CharField(max_length=50, choices=Product.SIZE_CHOICES)
+    quantity = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ('product', 'size',)
+    
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    size = models.CharField(max_length=50, blank=True, null=True)
+    
+    class Meta:
+        unique_together = ('user', 'product', 'size',)
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -22,4 +22,8 @@ urlpatterns = [
     path('contact/sucess/', views.success_view, name='sucess'),
     path('add_comment/<int:product_id>/', views.add_comment, name='add_comment'),
     path('add_rating/<int:product_id>/', views.add_rating, name='add_rating'),
+    path('add_to_cart/<int:product_id>/', views.add_to_cart_view, name='add_to_cart'),
+    path('add_size/<int:product_id>/', views.add_size, name='add_size'),
+    path('add_quantity/<int:product_id>/', views.add_quantity, name='add_quantity'),
+    path('cart/', views.view_cart, name='cart'),
 ]

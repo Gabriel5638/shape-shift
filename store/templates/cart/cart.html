@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Your Shopping Cart</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart_item in cart_items %}
+            <tr>
+                <td>{{ cart_item.product }}</td>
+                <td>{{ cart_item.size }}</td>
+                <td>{{ cart_item.quantity }}</td>
+                <td>
+                    <img src="{{ cart_item.image.url }}" alt="Product Image" style="width: 100px; height: auto;">
+                </td>
+                <td>${{ cart_item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

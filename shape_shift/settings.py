@@ -179,6 +179,9 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 CSRF_COOKIE_SECURE = True
 
+SESSION_COOKIE_AGE = 3600
+
+CSP_DEFAULT_SRC = ("'self'",)
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 

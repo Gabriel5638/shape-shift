@@ -58,6 +58,20 @@
                     <button type="submit">Add Rating</button>
                 </form>
 
+                <!-- Size Selection Form -->
+<form action="{% url 'add_size' product_id=product.id %}" method="post">
+    {% csrf_token %}
+    {{ size_form.size }}
+    <button type="submit">Select Size</button>
+</form>
+
+<!-- Product Quantity Form -->
+<form action="{% url 'add_quantity' product_id=product.id %}" method="post">
+    {% csrf_token %}
+    {{ quantity_form.quantity }}
+    <button type="submit">Update Quantity</button>
+</form>
+
                 <!-- Other product details or information -->
                 <div class="col-12">
                     <a href="#" id="back-button" class="btn btn-outline-black rounded-0 mt-5">
