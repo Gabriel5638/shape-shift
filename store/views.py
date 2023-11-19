@@ -341,3 +341,16 @@ def view_cart(request):
     }
 
     return render(request, 'cart.html', context)
+
+def remove_from_cart(request, cart_item_id):
+    # Fetch the cart item by its ID
+    try:
+        cart_item = CartItem.objects.get(pk=cart_item_id)
+    except CartItem.DoesNotExist:
+        # Handle if the cart item doesn't exist
+        pass
+    else:
+        # Delete the cart item
+        cart_item.delete()
+
+    return redirect('cart')

@@ -3,6 +3,8 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import remove_from_cart
+
 
 urlpatterns = [
     path('men/', views.men_product_list, name='men_products'),
@@ -25,5 +27,6 @@ urlpatterns = [
     path('add_to_cart/<int:product_id>/', views.add_to_cart_view, name='add_to_cart'),
     path('add_size/<int:product_id>/', views.add_size, name='add_size'),
     path('add_quantity/<int:product_id>/', views.add_quantity, name='add_quantity'),
+    path('remove/<int:cart_item_id>/', remove_from_cart, name='remove_from_cart'),
     path('cart/', views.view_cart, name='cart'),
 ]
