@@ -75,7 +75,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # required for allauth
+                'django.template.context_processors.request',
+                'store.context_processor.cart_total',
                 'django.contrib.messages.context_processors.messages',
                 'django.contrib.auth.context_processors.auth',
             ],

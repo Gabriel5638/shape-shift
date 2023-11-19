@@ -50,7 +50,8 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     size = models.CharField(max_length=50, blank=True, null=True)
-    
+    image = models.ImageField(upload_to=product_image_path, default='products/default_image.png')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     class Meta:
         unique_together = ('user', 'product', 'size',)
 

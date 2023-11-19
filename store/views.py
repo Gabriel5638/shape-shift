@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.contrib import messages
 from .forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from django.contrib import messages
-
+from decimal import Decimal
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -266,44 +266,52 @@ def add_rating(request, product_id):
 
 
 def add_to_cart_view(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    
-    # Fetch other product details: size, image, and price (replace these with your actual model fields)
-    selected_size = request.POST.get('size')  # Assuming size is sent in the POST request
-    product_image = product.image.url if product.image else None
-    product_price = product.price  # Assuming 'price' is a field in your Product model
-
     if request.method == 'POST':
-        # Save the product with selected size, image, and price to the cart
+        # Extract form data
+        selected_size = request.POST.get('size')
+        selected_quantity = int(request.POST.get('quantity', 1))  # Default to 1 if not specified
+        product = Product.objects.get(pk=product_id)
+        
+        # Calculate the total price based on quantity
+        product_price = product.price * Decimal(selected_quantity)
+
+        # Fetch other product details
+        product_image = product.image.url if product.image else None
+
         if request.user.is_authenticated:
-            # For authenticated users, save to the database (assuming User is the user model)
+            # Save to the database for authenticated users
             cart_item, created = CartItem.objects.get_or_create(
                 user=request.user,
                 product=product,
                 size=selected_size,
-                defaults={'quantity': 1, 'image': product_image, 'price': product_price}
+                defaults={'quantity': selected_quantity, 'image': product_image, 'price': product_price}
             )
             if not created:
-                cart_item.quantity += 1
+                cart_item.quantity += selected_quantity
+                cart_item.price += product_price  # Add the price for the quantity
                 cart_item.save()
         else:
-            # For anonymous users, use session to store cart information
+            # Use session for anonymous users
             session_cart = request.session.get('cart', {})
             item_key = f'{product_id}_{selected_size}'
             if item_key in session_cart:
-                session_cart[item_key]['quantity'] += 1
+                session_cart[item_key]['quantity'] += selected_quantity
+                session_cart[item_key]['price'] = product_price  # Update the price for the quantity
             else:
                 session_cart[item_key] = {
                     'product_id': product_id,
                     'size': selected_size,
-                    'quantity': 1,
+                    'quantity': selected_quantity,
                     'image': product_image,
-                    'price': product_price
+                    'price': product_price  # Include the price in the session cart item
                 }
             request.session['cart'] = session_cart
             
         return redirect('cart')  # Redirect to the cart page or another appropriate page
-
+    else:
+        # Handle other HTTP methods if needed
+        pass
+    
 
 def view_cart(request):
     user = request.user
@@ -317,9 +325,15 @@ def view_cart(request):
         session_cart = request.session.get('cart', {})
         cart_items = []
         for key, value in session_cart.items():
-            # Create a dictionary similar to CartItem objects to mimic the structure
+            product_id = value['product_id']
+            product = Product.objects.get(pk=product_id)  # Assuming Product is your product model
+
             cart_item = {
-                'product': value['product'],
+                'product': {
+                    'name': product.name,
+                    'description': product.description,
+                    # Add other necessary details
+                },
                 'size': value['size'],
                 'quantity': value['quantity'],
                 'image': value['image'],
@@ -329,6 +343,9 @@ def view_cart(request):
 
     return render(request, 'cart.html', {
         'cart_items': cart_items,
-        'size_form': size_form,  # Pass the SizeSelectionForm to the template
-        'quantity_form': quantity_form  # Pass the ProductQuantityForm to the template
+        'size_form': size_form,
+        'quantity_form': quantity_form
     })
+    
+
+

@@ -58,33 +58,20 @@
                     <button type="submit">Add Rating</button>
                 </form>
 
-                <!-- Size Selection Form -->
-<form action="{% url 'add_size' product_id=product.id %}" method="post">
+
+<form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
     {% csrf_token %}
+    
+    <!-- Include size and quantity fields from respective forms -->
     {{ size_form.size }}
-    <button type="submit">Select Size</button>
-</form>
-
-<!-- Product Quantity Form -->
-<form action="{% url 'add_quantity' product_id=product.id %}" method="post">
-    {% csrf_token %}
     {{ quantity_form.quantity }}
-    <button type="submit">Update Quantity</button>
-</form>
 
-                <!-- Other product details or information -->
-                <div class="col-12">
-                    <a href="#" id="back-button" class="btn btn-outline-black rounded-0 mt-5">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
-                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                </div>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </div>
-        </div>
+    <!-- Add other necessary product details like price -->
+    <input type="hidden" name="price" value="{{ product.price }}">
+    <!-- You can add other necessary product details here as hidden fields -->
+
+    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
+</form>
         {% if not request.user.is_authenticated %}
         <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment or rating.</p>
         {% else %}
