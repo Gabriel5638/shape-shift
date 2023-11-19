@@ -26,6 +26,7 @@ def cart_total(request):
             }
             cart_items.append(cart_item)
 
+    # Calculate the total price based on the updated cart items after deletion
     total_price = calculate_cart_total(cart_items)
 
     # Convert the Decimal to a float before passing it to the context

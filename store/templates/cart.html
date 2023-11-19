@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}">
     <style>
         img {
             max-width: 100px;
@@ -11,31 +11,43 @@
     </style>
 
     <div class="container">
-        <h1 class="text-center my-4">Your Shopping Cart</h1>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h1 class="text-center">Your Shopping Cart</h1>
+            </div>
+        </div>
 
-        <table class="table table-bordered table-striped bg-white">
-            <thead class="thead-light">
-                <tr>
-                    <th>Product</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cart_item in cart_items %}
-                <tr>
-                    <td>{{ cart_item.product }}</td>
-                    <td>{{ cart_item.size }}</td>
-                    <td>{{ cart_item.quantity }}</td>
-                    <td>
-                        <img src="{{ product.image.url  }}" alt="Product Image">
-                    </td>
-                    <td>${{ cart_item.price }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped bg-white">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cart_item in cart_items %}
+    <tr>
+        <!-- Columns for cart item details -->
+        <td>{{ cart_item.product }}</td>
+        <td>{{ cart_item.size }}</td>
+        <td>{{ cart_item.quantity }}</td>
+        <td>
+            <img src="{{ cart_item.product.image.url }}" alt="Product Image">
+        </td>
+        <td>${{ cart_item.price }}</td>
+        <td>
+            <a href="{% url 'remove_from_cart' cart_item.id %}" class="btn btn-danger btn-sm">Remove</a>
+        </td>
+    </tr>
+{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}

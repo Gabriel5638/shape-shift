@@ -15,6 +15,7 @@ from django.contrib import messages
 from decimal import Decimal
 from django.core.serializers import serialize
 from django.forms.models import model_to_dict
+from .utils import calculate_cart_total
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -343,14 +344,23 @@ def view_cart(request):
     return render(request, 'cart.html', context)
 
 def remove_from_cart(request, cart_item_id):
-    # Fetch the cart item by its ID
-    try:
-        cart_item = CartItem.objects.get(pk=cart_item_id)
-    except CartItem.DoesNotExist:
-        # Handle if the cart item doesn't exist
-        pass
-    else:
-        # Delete the cart item
-        cart_item.delete()
+    cart_item = get_object_or_404(CartItem, pk=cart_item_id)
+    
+    # Save the price of the item about to be deleted
+    item_price = cart_item.price
 
+    # Remove the item from the cart
+    cart_item.delete()
+
+    # Recalculate the total price after deletion
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user)
+    else:
+        session_cart = request.session.get('cart', {})
+        # Fetch and update the cart items
+        cart_items = []  # Update this list according to your session structure
+        
+    total_price = calculate_cart_total(cart_items)
+
+    # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
