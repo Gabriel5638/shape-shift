@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import dj_database_url
+
 if os.path.isfile('env.py'):
     import env
 
@@ -22,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)k6*nf6l_gl7*7%kvta*b#j7u*ag6z_cm8--m01@_orqb7uj5z' #make this secret
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '8000-gabriel5638-shapeshift-9ixmpbyflye.ws-eu106.gitpod.io',]
+ALLOWED_HOSTS = [ '8000-gabriel5638-shapeshift-wyp77opfy3r.ws-eu106.gitpod.io',]
 
 
 
@@ -113,13 +115,16 @@ WSGI_APPLICATION = 'shape_shift.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+# If using an environment variable for database configuration (e.g., for Heroku)
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -186,4 +191,4 @@ CSP_DEFAULT_SRC = ("'self'",)
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-gabriel5638-shapeshift-9ixmpbyflye.ws-eu106.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-gabriel5638-shapeshift-wyp77opfy3r.ws-eu106.gitpod.io']
