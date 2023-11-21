@@ -203,4 +203,4 @@ CSP_DEFAULT_SRC = ("'self'",)
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-gabriel5638-shapeshift-wyp77opfy3r.ws-eu106.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['shapeshift.herokuapp.com', 'localhost']
