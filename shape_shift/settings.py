@@ -202,4 +202,4 @@ CSP_DEFAULT_SRC = ("'self'",)
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
-CSRF_TRUSTED_ORIGINS = ['shapeshift.herokuapp.com', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost']
