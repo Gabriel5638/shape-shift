@@ -1,1 +1,1 @@
-web: gunicorn shape_shift.wsgi:application
+web: gunicorn shape_shift.wsgi:
