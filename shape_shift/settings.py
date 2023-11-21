@@ -17,7 +17,8 @@ if os.path.isfile('env.py'):
     import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR =  os.path.join(BASE_DIR, 'templates')
 
 
@@ -42,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -63,9 +64,9 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
 
     # Django Allauth Middleware
-    'allauth.account.middleware.AuthenticationMiddleware',
-    'allauth.socialaccount.middleware.SocialAccountMiddleware', 
-    'allauth.account.middleware.AccountMiddleware',
+    # 'allauth.account.middleware.AuthenticationMiddleware',
+    # 'allauth.socialaccount.middleware.SocialAccountMiddleware', 
+    # 'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -76,11 +77,7 @@ ROOT_URLCONF = 'shape_shift.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth'), 
-            TEMPLATES_DIR,
-        ],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
