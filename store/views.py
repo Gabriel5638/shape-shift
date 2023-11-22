@@ -4,6 +4,7 @@ from .models import CartItem
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json 
+import stripe
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.core.mail import send_mail
@@ -15,8 +16,10 @@ from .forms import ProductForm
 from django.contrib import messages
 from decimal import Decimal
 from django.core.serializers import serialize
+from django.conf import settings
 from django.forms.models import model_to_dict
 from .utils import calculate_cart_total
+
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -172,7 +175,7 @@ def product_detail(request, product_id):
             if size_form.is_valid():
                 selected_size = size_form.cleaned_data['size']
 
-                # ... (code for adding to cart based on selected size)
+               
 
                 # Redirect to the product detail page or another appropriate page
                 return redirect('product_detail', product_id=product_id)
@@ -390,3 +393,18 @@ def remove_from_cart(request, cart_item_id):
 
     # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def create_payment_intent(request):
+    if request.method == 'POST':
+        amount = 1000  # Amount in cents
+        try:
+            intent = stripe.PaymentIntent.create(
+                amount=amount,
+                currency='usd',
+            )
+            return JsonResponse({'clientSecret': intent.client_secret})
+        except stripe.error.CardError as e:
+            return JsonResponse({'error': str(e)})
