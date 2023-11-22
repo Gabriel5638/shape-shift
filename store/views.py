@@ -126,11 +126,19 @@ def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Process the form data (e.g., send email, save to database)
-            # Add your logic here
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
-            # Redirect to the 'success' URL after successful form submission
-            return redirect('sucess')
+            # Send email
+            send_mail(
+                f"Contact form submission from {name}",
+                f"Email: {email}\n\nMessage:\n{message}",
+                email,  # From email address
+                ['gabrielpuiu213@gmail.com'], 
+                fail_silently=False,
+            )
+            return render(request, 'success.html')  
     else:
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
