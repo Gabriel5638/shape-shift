@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: url('/media/diets/dietbackground.jpg') no-repeat center center fixed;
+    background: url('https://res.cloudinary.com/dgqbwyrsz/image/upload/v1700674570/mmzbgzglwxzhstkjbqve.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
