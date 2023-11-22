@@ -29,3 +29,8 @@ class ProductQuantityForm(forms.ModelForm):
     class Meta:
         model = ProductQuantity
         fields = ['quantity']
+        
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'price', 'image', 'category', 'description', 'size'] 

@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from .forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
+from .forms import ProductForm
 from django.contrib import messages
 from decimal import Decimal
 from django.core.serializers import serialize
@@ -317,7 +318,24 @@ def add_to_cart_view(request, product_id):
         # Handle other HTTP methods if needed
         pass
     
+def product_admin_panel(request):
+    products = Product.objects.all()
+    return render(request, 'product_admin.html', {'products': products})
 
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    return redirect('product_admin_panel')  # Redirect back to the product admin panel
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_admin_panel')  # Redirect back to the product admin panel after successful addition
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})
 
 def view_cart(request):
     user = request.user
