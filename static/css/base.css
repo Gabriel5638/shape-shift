@@ -30,13 +30,6 @@ body {
     width: 1.5rem;
 }
 
-.social-icons a {
-    font-size: 28px; /* Adjust the icon size */
-    margin-right: 15px; /* Add spacing between icons */
-    color: #fff; /* Icon color */
-    margin-top: 25px;
-}
-
 .logo-font {
     color: #222;
     text-transform: uppercase;

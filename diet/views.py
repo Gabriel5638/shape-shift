@@ -1,16 +1,26 @@
 from django.shortcuts import render
+from .models import Diet
 
 def mediterranean_diet(request):
-    return render(request, 'diet/mediterranean.html')
+    try:
+        mediterranean = Diet.objects.get(name='Mediterranean Diet')
+    except Diet.DoesNotExist:
+        mediterranean = None  # Or handle the case where the diet doesn't exist
+
+    return render(request, 'diet/mediterranean.html', {'diet': mediterranean})
 
 def paleo_diet(request):
-    return render(request, 'diet/paleo.html')
+    paleo = Diet.objects.get(name='Paleo Diet')
+    return render(request, 'diet/paleo.html', {'diet': paleo})
 
 def keto_diet(request):
-    return render(request, 'diet/keto.html')
+    keto = Diet.objects.get(name='Keto Diet')
+    return render(request, 'diet/keto.html', {'diet': keto})
 
 def carnivore_diet(request):
-    return render(request, 'diet/carnivore.html')
+    carnivore = Diet.objects.get(name='Carnivore Diet')
+    return render(request, 'diet/carnivore.html', {'diet': carnivore})
 
 def whole_diet(request):
-    return render(request, 'diet/wholediet.html')
+    whole = Diet.objects.get(name='Whole Diet')
+    return render(request, 'diet/wholediet.html', {'diet': whole})

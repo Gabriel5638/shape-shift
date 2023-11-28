@@ -102,6 +102,33 @@
     {% block content %}
     {% endblock %}
 
+    {% block footer %}
+    <!-- Footer section -->
+    <footer class="container-fluid bg-dark text-white py-2 mt-2 fixed-bottom">
+        <div class="row">
+            <div class="col-lg-8 my-auto py-1 py-lg-0">
+                <form method="GET" action="{% url 'all_products' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                        <div class="input-group-append">
+                            <button class="btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 text-right">
+                <a href="https://www.facebook.com/profile.php?id=61552389658110" class="fa fa-facebook fa-2x m-2 text-white mr-3" target="_blank"></a> 
+                <a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr fa-2x m-2 text-white mr-3" target="_blank"></a> 
+                <a href="https://www.reddit.com/" class="fa fa-reddit fa-2x m-2 text-white mr-3" target="_blank"></a>  
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
     {% block postloadjs %}
     {% endblock %}
 
