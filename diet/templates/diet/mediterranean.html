@@ -6,12 +6,23 @@
 {% endblock %}
 
 {% block content %}
+<div class="diet-details">
     <h1>{{ diet.name }}</h1>
     <p>{{ diet.description }}</p>
     <h3>Ingredients</h3>
     <p>{{ diet.ingredients }}</p>
     <h3>Instructions</h3>
     <p>{{ diet.instructions }}</p>
+</div>
+
+    <!-- jQuery script to remove the background image -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Remove background image
+            $('body').css('background-image', 'none');
+        });
+    </script>
 {% endblock %}
 
 
