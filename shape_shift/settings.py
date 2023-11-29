@@ -218,8 +218,8 @@ else:
 STRIPE_PUBLISHABLE_KEY = 'your_publishable_key'
 STRIPE_SECRET_KEY = 'your_secret_key'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dgqbwyrsz',
-    'API_KEY': '851214297734622',
-    'API_SECRET': 'r1GWkk9a6ie3NhtGAHDGmeCU0Mo', 
-}
+#CLOUDINARY_STORAGE = {
+    #'CLOUD_NAME': 'dgqbwyrsz',
+    #'API_KEY': '851214297734622',
+    #'API_SECRET': 'r1GWkk9a6ie3NhtGAHDGmeCU0Mo', 
+#}
