@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Meal List</title>
+{% endblock %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            {% if deleted %}
+                <div class="alert alert-success">
+                    Meal deleted successfully!
+                </div>
+            {% endif %}
+            <h1 class="text-center mb-4" style="margin-top: 100px;">My Meals</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Meal Type</th>
+                        <th>Meal</th>
+                        <th>Actions</th> <!-- Adding a column for actions -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for meal in meals %}
+                        <tr>
+                            <td>{{ meal.date }}</td>
+                            <td>{{ meal.time }}</td>
+                            <td>{{ meal.meal_type }}</td>
+                            <td>{{ meal.meal }}</td>
+                            <td>
+                                <!-- Delete button/link -->
+                                <form method="post" action="{% url 'meal_delete' pk=meal.pk %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Hide the footer
+        $('footer').hide();
+
+        // Remove background image
+        $('body').css('background-image', 'none');
+    });
+</script>
+{% endblock %}

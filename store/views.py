@@ -11,8 +11,8 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from .forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
-from .forms import ProductForm
+from store.forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
+from store.forms import ProductForm
 from django.contrib import messages
 from decimal import Decimal
 from django.core.serializers import serialize
