@@ -128,7 +128,7 @@
             <div class="row">
                 {% for product in products %}
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card h-100 border-0">
+                        <div class="card h-100 border border-dark">
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
@@ -187,18 +187,15 @@
 
 {% block postloadjs %}
 <script type="text/javascript">
-    $(document).ready(function() {
-        // Remove background image when .btt-link is clicked
-        $('.btt-link').click(function(e) {
-            e.preventDefault(); // Prevent default link behavior
-
-            // Remove background image from the element with class .background-element
-            $('.background-element').css('background-image', 'none');
-            
-            // Scroll to the top of the page
-            window.scrollTo(0, 0);
-        });
+ $(document).ready(function() {
+    // Scroll to the top of the page when .btt-link is clicked
+    $('.btt-link').click(function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        
+        // Scroll to the top of the page
+        window.scrollTo(0, 0);
     });
+});
 </script>
 {% endblock %} 
 </body>
