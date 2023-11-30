@@ -98,12 +98,15 @@ def foamrollers_products(request):
 
 def protein_products(request):
     products = Product.objects.filter(category="Protein")
-    return render(request, 'store/protein.html', {'products': products})
+    return render(request, 'store/category_products.html', {'products': products,"title": "Protein"})
 
 
 def creatine_products(request):
     products = Product.objects.filter(category="Creatine")
-    return render(request, 'store/creatine.html', {'products': products})
+    return render(request, 'store/category_products.html', {
+    "products": products, 
+    "title": "Creatine"
+})
 
 
 def electrolytes_products(request):
