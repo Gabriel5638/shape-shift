@@ -27,7 +27,7 @@ TEMPLATES_DIR =  os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@bqgs#l5jx10o*&rlrdz8w@#2u6zs3z9g0t)!xlqf%$h5s4%%$' #make this secret and put env.py in gitnore
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -218,8 +218,16 @@ else:
 STRIPE_PUBLISHABLE_KEY = 'your_publishable_key'
 STRIPE_SECRET_KEY = 'your_secret_key'
 
-#CLOUDINARY_STORAGE = {
-    #'CLOUD_NAME': 'dgqbwyrsz',
-    #'API_KEY': '851214297734622',
-    #'API_SECRET': 'r1GWkk9a6ie3NhtGAHDGmeCU0Mo', 
-#}
+
+
+# Load Cloudinary configuration from environment variables
+cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME")
+api_key = os.environ.get("CLOUDINARY_API_KEY")
+api_secret = os.environ.get("CLOUDINARY_API_SECRET")
+
+# Construct the Cloudinary configuration dictionary
+CLOUDINARY_CONFIG = {
+    "cloud_name": cloud_name,
+    "api_key": api_key,
+    "api_secret": api_secret
+}

@@ -2,14 +2,11 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% endblock %}
-
-    {% block extra_meta %}
     {% endblock %}
 
     {% block corecss %}
@@ -28,12 +25,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     {% endblock %}
 
-    {% block extra_js %}
-    {% endblock %}
-
     <title>Shape-Shift {% block extra_title %}{% endblock %}</title>
-  </head>
-  <body>
+</head>
+<body>
     <header class="container-fluid fixed-top">
         <div id ="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-6 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -104,7 +98,7 @@
 
     {% block footer %}
     <!-- Footer section -->
-    <footer class="container-fluid bg-dark text-white py-2 mt-2 fixed-bottom">
+    <footer class="container-fluid bg-dark text-white py-1">
         <div class="row">
             <div class="col-lg-8 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'all_products' %}">
@@ -127,12 +121,25 @@
             </div>
         </div>
     </footer>
-{% endblock %}
+    {% endblock %}
 
     {% block postloadjs %}
     {% endblock %}
 
-  </body>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

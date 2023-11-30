@@ -92,6 +92,10 @@ body::-webkit-scrollbar {
     width: 0.5rem;
 }
 
+footer {
+    position: fixed;
+}
+
 /* Style the scrollbar thumb (the draggable part) */
 body::-webkit-scrollbar-thumb {
     background-color: #444; 
