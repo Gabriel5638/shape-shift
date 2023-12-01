@@ -64,12 +64,10 @@
                         <option value="{{ color_choice.0 }}">{{ color_choice.1 }}</option>
                     {% endfor %}
                 </select>
-                <select name="material">
-                    <option value="">Select Material</option>
-                    {% for material_choice in product.MATERIAL_CHOICES %}
-                        <option value="{{ material_choice.0 }}">{{ material_choice.1 }}</option>
-                    {% endfor %}
-                </select>
+
+                {% if product %}
+                <p>Material: {{ product.material_composition }}</p>
+            {% endif %}
 
                 {% if product.return_days %}
     <p>You can return within: {{ product.return_days }} days</p>

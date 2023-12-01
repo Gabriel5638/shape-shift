@@ -38,7 +38,11 @@ class Product(models.Model):
     MATERIAL_CHOICES = [
         ('Cotton', 'Cotton'),
         ('Polyester', 'Polyester'),
-
+        ('Plastic', 'Plastic'),
+        ('Metal', 'Metal'),
+        ('Elastic', 'Elastic'),
+        ('Pvc', 'Pvc'),
+        ('Foam', 'Foam'),
     ]
 
     AVAILABILITY_CHOICES = [
@@ -53,7 +57,7 @@ class Product(models.Model):
     description = models.TextField()
     size = models.CharField(max_length=50, choices=SIZE_CHOICES, blank=True, null=True)
     color = models.CharField(max_length=50, choices=COLOR_CHOICES, blank=True, null=True)
-    material = models.CharField(max_length=100, choices=MATERIAL_CHOICES, blank=True, null=True)
+    material_composition = models.CharField(max_length=100, choices=MATERIAL_CHOICES, default='Cotton')
     return_days = models.PositiveIntegerField(help_text="Enter the number of days for returns")
     availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In stock')
 
