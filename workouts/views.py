@@ -1,17 +1,10 @@
 from django.shortcuts import render
+from .models import WorkoutTracker
 
 
-def push(request):
-    return render(request, 'workouts/push-pull-legs.html')
-
-def volume(request):
-    return render(request, 'workouts/german-volume.html')
-
-def texas(request):
-    return render(request, 'workouts/texas-method.html')
-
-def juggernaut(request):
-    return render(request, 'workouts/juggernaut-method.html')
-
-def stronglifts(request):
-    return render(request, 'workouts/stronglifts.html')
+def workout_list(request):
+    # Retrieve all WorkoutTracker instances
+    workouts = WorkoutTracker.objects.all()
+    
+    # Pass the workouts to the template for rendering
+    return render(request, 'workout_list.html', {'workouts': workouts})

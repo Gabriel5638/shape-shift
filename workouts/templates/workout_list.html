@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Workout Tracker</h1>
+    <ul>
+    {% for workout in workouts %}
+        <li>
+            <strong>{{ workout.title }}</strong> on {{ workout.get_day_of_week_display }} - Duration: {{ workout.duration }} minutes
+        </li>
+    {% empty %}
+        <li>No workouts tracked yet.</li>
+    {% endfor %}
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Hide the footer
+        $('footer').hide();
+
+        // Remove background image
+        $('body').css('background-image', 'none');
+    });
+</script>
+{% endblock %}
