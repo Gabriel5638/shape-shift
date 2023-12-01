@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 def product_image_path(instance, filename):
     return f'products/{instance.category.lower()}/{filename}'
 
+
 class Product(models.Model):
     CATEGORY_CHOICES = [
         ('Men', 'Men'),
@@ -26,12 +27,35 @@ class Product(models.Model):
         ('Large', 'Large'),
     ]
 
+    COLOR_CHOICES = [
+        ('Red', 'Red'),
+        ('Blue', 'Blue'),
+        ('Green', 'Green'),
+        ('Black', 'Black'),
+        
+    ]
+
+    MATERIAL_CHOICES = [
+        ('Cotton', 'Cotton'),
+        ('Polyester', 'Polyester'),
+
+    ]
+
+    AVAILABILITY_CHOICES = [
+        ('In stock', 'In stock'),
+        ('Out of stock', 'Out of stock'),
+    ]
+
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to=product_image_path)
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='Men')
     description = models.TextField()
     size = models.CharField(max_length=50, choices=SIZE_CHOICES, blank=True, null=True)
+    color = models.CharField(max_length=50, choices=COLOR_CHOICES, blank=True, null=True)
+    material = models.CharField(max_length=100, choices=MATERIAL_CHOICES, blank=True, null=True)
+    return_days = models.PositiveIntegerField(help_text="Enter the number of days for returns")
+    availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In stock')
 
     def __str__(self):  
         return self.name

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Comment, Rating
 from .models import CartItem
@@ -287,19 +288,17 @@ def add_rating(request, product_id):
 
 def add_to_cart_view(request, product_id):
     if request.method == 'POST':
-        # Extract form data
         selected_size = request.POST.get('size')
-        selected_quantity = int(request.POST.get('quantity', 1))  # Default to 1 if not specified
+        selected_quantity = int(request.POST.get('quantity', 1))
         product = Product.objects.get(pk=product_id)
         
-        # Calculate the total price based on quantity
+        if product.availability != 'In stock':
+            return HttpResponse("We are sorry, but this item is out of stock. <a href='{}'>Go Back to All Products</a>".format(reverse('all_products')))
+        
         product_price = product.price * Decimal(selected_quantity)
-
-        # Fetch other product details
         product_image = product.image.url if product.image else None
 
         if request.user.is_authenticated:
-            # Save to the database for authenticated users
             cart_item, created = CartItem.objects.get_or_create(
                 user=request.user,
                 product=product,
@@ -311,23 +310,22 @@ def add_to_cart_view(request, product_id):
                 cart_item.price += product_price
                 cart_item.save()
         else:
-            # Use session for anonymous users
             session_cart = request.session.get('cart', {})
             item_key = f'{product_id}_{selected_size}'
             if item_key in session_cart:
                 session_cart[item_key]['quantity'] += selected_quantity
-                session_cart[item_key]['price'] = float(product_price)  # Convert Decimal to float for serialization
+                session_cart[item_key]['price'] = float(product_price)
             else:
                 session_cart[item_key] = {
                     'product_id': product_id,
                     'size': selected_size,
                     'quantity': selected_quantity,
                     'image': product_image,
-                    'price': float(product_price)  # Convert Decimal to float for serialization
+                    'price': float(product_price)
                 }
             request.session['cart'] = session_cart
             
-        return redirect('cart')  # Redirect to the cart page or another appropriate page
+        return HttpResponseRedirect(reverse('cart'))
     else:
         # Handle other HTTP methods if needed
         pass
@@ -351,6 +349,7 @@ def add_product(request):
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
 
+
 def view_cart(request):
     user = request.user
 
@@ -360,6 +359,13 @@ def view_cart(request):
         session_cart = request.session.get('cart', {})
         session_product_ids = [value['product_id'] for value in session_cart.values()]
         cart_items = CartItem.objects.filter(product__id__in=session_product_ids)
+
+    context = {
+        'cart_items': cart_items,
+        # Add other context data as needed
+    }
+
+    return render(request, 'cart.html', context)
 
     # Assuming you've fetched the cart items and created the forms as previously shown
 
