@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from .models import MealJournalEntry
 from diet.forms import MealForm
 from django.shortcuts import redirect
@@ -21,16 +22,15 @@ def meal_create(request):
     return render(request, 'meal_create.html', {'form': form})
 
 
-@login_required
 def meal_delete(request, pk):
     meal = get_object_or_404(MealJournalEntry, pk=pk)
     if request.method == 'POST':
         # Delete the meal entry
         meal.delete()
-        # Redirect to the meal list or any other appropriate URL after deletion
-        return redirect('meal_list')
-    # If the request method is not POST, redirect to an appropriate URL
-    return redirect('meal_list')
+        # Return success message as JSON response
+        return JsonResponse({'message': 'Meal successfully deleted'})
+    # If the request method is not POST, return an error message
+    return JsonResponse({'error': 'Invalid request'})
 
 
 @login_required

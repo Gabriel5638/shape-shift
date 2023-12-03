@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">{% if form.instance.pk %}Edit Meal{% else %}Create Meal{% endif %}</h1>
+    <h1 class="text-center text-white">{% if form.instance.pk %}Edit Meal{% else %}Create Meal{% endif %}</h1>
     <div class="container mt-5 pt-5">
         <div class="row justify-content-center">
-            <div class="col-md-6 mt-4"> <!-- Added mt-4 for margin-top -->
+            <div class="col-md-6 mt-4 text-white"> <!-- Added text-white for white text -->
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -18,10 +18,4 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('footer').hide(); // Hide the footer
-        });
-    </script>
 {% endblock %}
