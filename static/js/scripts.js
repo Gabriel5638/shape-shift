@@ -1,10 +1,4 @@
 $(document).ready(function() {
-    // Hide the footer
-    $('footer').hide();
-
-    // Remove background image
-    $('body').css('background-image', 'none');
-
     // SweetAlert confirmation for delete button
     $('.btn-danger').on('click', function(e) {
         e.preventDefault(); // Prevent form submission
