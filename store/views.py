@@ -324,7 +324,11 @@ def add_to_cart_view(request, product_id):
                     'price': float(product_price)
                 }
             request.session['cart'] = session_cart
-            
+
+            # Print the session contents
+            if 'cart' in request.session:
+                print(request.session['cart'])
+        
         return HttpResponseRedirect(reverse('cart'))
     else:
         # Handle other HTTP methods if needed
@@ -356,27 +360,23 @@ def view_cart(request):
     if user.is_authenticated:
         cart_items = CartItem.objects.filter(user=user)
     else:
+        # Retrieve session cart
         session_cart = request.session.get('cart', {})
-        session_product_ids = [value['product_id'] for value in session_cart.values()]
-        cart_items = CartItem.objects.filter(product__id__in=session_product_ids)
+        # Construct a list of cart items based on session data
+        cart_items = []
+        for item_key, item in session_cart.items():
+            product = Product.objects.get(pk=item['product_id'])
+            cart_item = {
+                'product': product,
+                'size': item['size'],
+                'quantity': item['quantity'],
+                'image': item['image'],
+                'price': item['price']
+            }
+            cart_items.append(cart_item)
 
     context = {
         'cart_items': cart_items,
-        # Add other context data as needed
-    }
-
-    return render(request, 'cart.html', context)
-
-    # Assuming you've fetched the cart items and created the forms as previously shown
-
-    # Create instances of the forms
-    size_form = SizeSelectionForm()
-    quantity_form = ProductQuantityForm()
-
-    context = {
-        'cart_items': cart_items,
-        'size_form': size_form,
-        'quantity_form': quantity_form
     }
 
     return render(request, 'cart.html', context)
