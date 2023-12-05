@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-from store.forms import ContactForm, CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
+from store.forms import  CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from store.forms import ProductForm
 from django.contrib import messages
 from decimal import Decimal
@@ -126,29 +126,7 @@ def postworkout_products(request):
 
 
 
-def success_view(request):
-    return render(request, 'sucess.html')
 
-def contact_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-
-            # Send email
-            send_mail(
-                f"Contact form submission from {name}",
-                f"Email: {email}\n\nMessage:\n{message}",
-                email,  # From email address
-                ['gabrielpuiu213@gmail.com'], 
-                fail_silently=False,
-            )
-            return render(request, 'success.html')  
-    else:
-        form = ContactForm()
-    return render(request, 'contact.html', {'form': form})
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
