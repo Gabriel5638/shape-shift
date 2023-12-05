@@ -1,7 +1,7 @@
 core.Microsoft*
 core.mongo*
 core.python*
-#add env.py here
+env.py
 __pycache__/
 *.py[cod]
 node_modules/
