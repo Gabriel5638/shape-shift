@@ -21,5 +21,13 @@
       <button type="submit">{% trans "Sign Up" %}</button>
     </form>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var footer = document.querySelector('.bg-dark'); // Replace '.bg-dark' with the correct class name of your footer
+      if (footer) {
+        footer.style.display = 'none';
+      }
+    });
+  </script>
 {% endblock %}
 

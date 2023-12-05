@@ -66,7 +66,7 @@ MIDDLEWARE = [
     # Django Allauth Middleware
     # 'allauth.account.middleware.AuthenticationMiddleware',
     # 'allauth.socialaccount.middleware.SocialAccountMiddleware', 
-    'allauth.account.middleware.AccountMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
