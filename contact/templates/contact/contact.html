@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="contact-form">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+        <input type="email" id="userEmail" name="user_email" placeholder="Your Email"><br>
+        <input type="text" id="subject" name="subject" placeholder="Subject"><br>
+        <textarea id="message" name="message" placeholder="Your Message"></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+</div>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script>
+    (function() {
+        emailjs.init("{{ EMAILJS_API_KEY }}"); 
+    })();
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        emailjs.sendForm("{{ EMAILJS_SERVICE_ID }}", "{{EMAILJS_TEMPLATE_ID}}", this)
+            .then(function(response) {
+                console.log('Email sent!', response.status, response.text);
+                alert('Email sent successfully!');
+                // Optionally, clear the form after successful submission
+                document.getElementById('contactForm').reset();
+            }, function(error) {
+                console.error('Email failed to send:', error);
+                alert('Error sending email. Please try again.');
+            });
+    });
+</script>
+
+{% endblock %}

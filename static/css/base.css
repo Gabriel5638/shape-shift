@@ -92,38 +92,45 @@ body::-webkit-scrollbar {
     width: 0.5rem;
 }
 
-.contact-form-wrapper input[type="text"],
-.contact-form-wrapper input[type="email"],
-.contact-form-wrapper textarea {
-    width: calc(100% - 20px);
-    padding: 5px; /* Adjust the padding to make the input fields more visible */
-    margin-bottom: 8px; /* Adjust the margin to increase spacing between fields */
-    font-size: 18px; /* Increase the font size for better readability */
-    height: 25px; /* Increase the height of the input fields */
-}
 
-.contact-form-wrapper textarea {
-    height: 80px; /* Increase the height of the textarea further */
-    resize: none; /* Disable resizing of the textarea */
-    font-size: 20px; /* Increase font size for the textarea content */
-}
-
-.contact-form-wrapper {
+.contact-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    height: 90vh; /* Adjust the height of the container to occupy most of the viewport height */
-    padding: 10px; /* Add some padding to the container */
+    justify-content: center;
+    height: 100vh; /* Adjust this value as needed for the desired height */
+    background-color: #fff; /* White background */
+    color: #000;
 }
 
-.contact-form-wrapper form {
-    margin-top: 10px; /* Push the form slightly up from the bottom */
-    width: 100%; /* Ensure the form takes the full width */
-    background-color: #fff; /* Add a white background to the form */
-    padding: 20px; /* Add some padding to the form for better visibility */
-    border-radius: 5px; /* Add a border-radius for better appearance */
+/* Additional styling for form elements */
+#contactForm {
+    width: 300px; /* Adjust width as needed */
 }
+
+input[type="email"],
+input[type="text"],
+textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 8px; /* Adjust padding as needed */
+    margin-bottom: 10px; /* Adjust margin between inputs */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+    resize: none; /* Disable textarea resizing */
+}
+
+textarea {
+    height: 120px; /* Adjust textarea height */
+}
+
+/* Disable text selection in the textarea */
+textarea::selection {
+    background-color: transparent;
+}
+
+
+
 
 footer {
     width: 100%;
