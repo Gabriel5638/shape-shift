@@ -8,6 +8,8 @@
         <input type="email" id="userEmail" name="user_email" placeholder="Your Email"><br>
         <input type="text" id="subject" name="subject" placeholder="Subject"><br>
         <textarea id="message" name="message" placeholder="Your Message"></textarea><br>
+        <!-- Hidden input field to capture the sender's email -->
+        <input type="hidden" id="senderEmail" name="sender_email">
         <button type="submit">Send</button>
     </form>
 </div>
@@ -20,7 +22,18 @@
 
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        emailjs.sendForm("{{ EMAILJS_SERVICE_ID }}", "{{EMAILJS_TEMPLATE_ID}}", this)
+        
+        // Get the sender's email from the input field
+        var senderEmail = document.getElementById('userEmail').value;
+        var message = document.getElementById('message').value; // Get the message content
+
+        // Set the message content and sender's email in the email parameters
+        var emailParams = {
+            reply_to: senderEmail, // Set the 'reply_to' field to the sender's email
+            message: message // Include the message content
+        };
+
+        emailjs.send("{{ EMAILJS_SERVICE_ID }}", "{{ EMAILJS_TEMPLATE_ID }}", emailParams)
             .then(function(response) {
                 console.log('Email sent!', response.status, response.text);
                 alert('Email sent successfully!');
@@ -34,3 +47,4 @@
 </script>
 
 {% endblock %}
+
