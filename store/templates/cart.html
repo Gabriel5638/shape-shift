@@ -42,10 +42,10 @@
     <td>${{ cart_item.price }}</td>
     <td>
         {% if user.is_authenticated %}
-            <a href="{% url 'remove_from_cart' cart_item.id %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
-        {% else %}
-            <!-- Handle remove for anonymous user differently -->
-            <button onclick="removeItemFromCart('{{ cart_item.product.id }}', '{{ cart_item.size }}')" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</button>
+        <a href="{% url 'remove_from_cart' cart_item.id %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
+         {% else %}
+        <!-- Handle remove for anonymous user differently -->
+        <a href="{% url 'guest_remove_from_cart' cart_item.product.id cart_item.size  %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
         {% endif %}
     </td>
 </tr>

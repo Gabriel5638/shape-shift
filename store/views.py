@@ -359,28 +359,42 @@ def view_cart(request):
 
     return render(request, 'cart.html', context)
 
+
 def remove_from_cart(request, cart_item_id):
-    cart_item = get_object_or_404(CartItem, pk=cart_item_id)
-    
+
     # Save the price of the item about to be deleted
-    item_price = cart_item.price
+    # item_price = cart_item.price
 
     # Remove the item from the cart
-    cart_item.delete()
 
     # Recalculate the total price after deletion
     if request.user.is_authenticated:
-        cart_items = CartItem.objects.filter(user=request.user)
-    else:
-        session_cart = request.session.get('cart', {})
-        # Fetch and update the cart items
-        cart_items = []  # Update this list according to your session structure
-        
-    total_price = calculate_cart_total(cart_items)
+        cart_item = get_object_or_404(CartItem, pk=cart_item_id)
+        cart_item.delete()
+    # total_price = calculate_cart_total(cart_items)
 
     # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
+    
+def guest_remove_from_cart(request, cart_product_id, selected_size):
 
+    # Save the price of the item about to be deleted
+    # item_price = cart_item.price
+
+    # Remove the item from the cart
+
+    # Recalculate the total price after deletion
+    if not request.user.is_authenticated:
+        session_cart = request.session.get('cart', {})
+        item_key = f'{cart_product_id}_{selected_size}'
+        if item_key in session_cart:
+            del(session_cart[item_key])
+        request.session['cart'] = session_cart
+
+    # total_price = calculate_cart_total(cart_items)
+
+    # Redirect back to the cart page with the updated total price or any other appropriate page
+    return redirect('cart')
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
