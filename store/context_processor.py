@@ -2,7 +2,8 @@ from .models import CartItem, Product
 from .utils import calculate_cart_total  
 from decimal import Decimal
 
-def cart_total(request):
+
+def cart_contents(request):
     user = request.user
     if user.is_authenticated:
         cart_items = CartItem.objects.filter(user=user)
@@ -29,7 +30,16 @@ def cart_total(request):
     # Calculate the total price based on the updated cart items after deletion
     total_price = calculate_cart_total(cart_items)
 
-    # Convert the Decimal to a float before passing it to the context
+    # Calculate the grand total by adding any additional costs or discounts
+    additional_costs_or_discounts = 0  # Replace with your logic
+    grand_total = total_price + additional_costs_or_discounts
+
+    # Convert the Decimal values to float before returning
     total_price = float(total_price)
+    grand_total = float(grand_total)
     
-    return {'total_price': total_price}
+    return {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'grand_total': grand_total
+    }

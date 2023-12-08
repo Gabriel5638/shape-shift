@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'store',
     'diet',
     'contact',
+    'checkout',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -84,12 +86,13 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'store.context_processor.cart_total',
+                'store.context_processor.cart_contents',
                 'django.contrib.messages.context_processors.messages',
                 'django.contrib.auth.context_processors.auth',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
@@ -216,8 +219,9 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
     
         
-STRIPE_PUBLISHABLE_KEY = 'your_publishable_key'
-STRIPE_SECRET_KEY = 'your_secret_key'
+STRIPE_PUBLIC_KEY = 'pk_test_51OFMSqAn3CDk8XfLke7zXtjnbxcg1C89ZS8oNkausybu1YDziS5QcedaQijLFBGSVJ8zZOZNNwzOjBnxvSrTf4qa00ZHVitcze'
+STRIPE_SECRET_KEY = 'sk_test_51OFMSqAn3CDk8XfLu3btcPvPuDYGfj7Wiz5gdY40cH2iMrJyN8c4ShhE7QyRmLGKjly4OC0abC6KuJeb3OpgYaRY00KCDrMVFq'
+STRIPE_CURRENCY = 'EUR' 
 
 
 

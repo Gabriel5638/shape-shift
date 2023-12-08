@@ -5,12 +5,12 @@ from .models import CartItem
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json 
-import stripe
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import stripe
 from django.contrib import messages
 from store.forms import  CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from store.forms import ProductForm
