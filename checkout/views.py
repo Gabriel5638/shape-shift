@@ -87,7 +87,7 @@ def checkout(request):
                         "Please call us for assistance!")
                     )
                     order.delete()
-                    return redirect(reverse('view_cart'))
+                    return redirect(reverse('cart'))
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST

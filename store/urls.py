@@ -1,8 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path 
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     path('men/', views.men_product_list, name='men_products'),
@@ -28,5 +30,5 @@ urlpatterns = [
     path('delete_product/<int:product_id>/', views.delete_product, name='delete_product'),
     path('admin/products/', views.product_admin_panel, name='product_admin_panel'),
     path('add_product/', views.add_product, name='add_product'),
-    path('cart/', views.view_cart, name='view_cart'),
+    path('cart/', views.view_cart, name='cart'),
 ]
