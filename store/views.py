@@ -309,7 +309,7 @@ def add_to_cart_view(request, product_id):
         
         return HttpResponseRedirect(reverse('cart'))
     else:
-        # Handle other HTTP methods if needed
+
         pass
     
 def product_admin_panel(request):

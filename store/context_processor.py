@@ -16,9 +16,10 @@ def cart_contents(request):
 
             cart_item = {
                 'product': {
+                    'id': product_id,
                     'name': product.name,
                     'description': product.description,
-                    # Add other necessary details
+                   
                 },
                 'size': value['size'],
                 'quantity': value['quantity'],
