@@ -30,9 +30,9 @@ TEMPLATES_DIR =  os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost', '8000-gabriel5638-shapeshift-rc4o7vo4h97.ws-eu106.gitpod.io']
+ALLOWED_HOSTS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost', '8000-gabriel5638-shapeshift-tgdugavl9mc.ws-eu106.gitpod.io']
 
 
 
@@ -203,12 +203,12 @@ CSP_DEFAULT_SRC = ("'self'",)
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
-CSRF_TRUSTED_ORIGINS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost', '8000-gabriel5638-shapeshift-rc4o7vo4h97.ws-eu106.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost', '8000-gabriel5638-shapeshift-tgdugavl9mc.ws-eu106.gitpod.io']
 
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'shapeshift@example.com'
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
