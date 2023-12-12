@@ -1,14 +1,37 @@
-<html>
-<head>
-    <title>Add Product</title>
-</head>
-<body>
-    <h1>Add Product</h1>
+{% extends 'product_admin.html' %}
+{% load static %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add Product">
-    </form>
-</body>
-</html>
+{% block extra_title %}
+    <title>Add Product</title>
+{% endblock %}
+
+
+
+{% block content %}
+<h1 class="text-center mt-5">Add Product</h1>
+    <!-- Your additional content for the add product page here -->
+    <div class="container mt-4">
+        <!-- Tip section -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="alert alert-info">
+                    <h3 class="text-center">Tip: Keep Image Names Short and Descriptive</h3>
+                    <p class="text-center">
+                        Please use image names with fewer than 40 characters, for example: <strong>chair.jpg</strong>. Avoid too many characters in the image names as it might cause issues during product uploading. Thank you!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form section -->
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Add Product" class="btn btn-primary mb-4">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

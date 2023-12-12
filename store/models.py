@@ -55,11 +55,11 @@ class Product(models.Model):
     image = models.ImageField(upload_to=product_image_path)
     category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='Men')
     description = models.TextField()
-    size = models.CharField(max_length=50, choices=SIZE_CHOICES, blank=True, null=True)
-    color = models.CharField(max_length=50, choices=COLOR_CHOICES, blank=True, null=True)
+    size = models.CharField(max_length=101, choices=SIZE_CHOICES, blank=True, null=True)
+    color = models.CharField(max_length=101, choices=COLOR_CHOICES, blank=True, null=True)
     material_composition = models.CharField(max_length=100, choices=MATERIAL_CHOICES, default='Cotton')
     return_days = models.PositiveIntegerField(help_text="Enter the number of days for returns")
-    availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In stock')
+    availability = models.CharField(max_length=101, choices=AVAILABILITY_CHOICES, default='In stock')
 
     def __str__(self):  
         return self.name

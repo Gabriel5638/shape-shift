@@ -321,6 +321,22 @@ def delete_product(request, product_id):
     product.delete()
     return redirect('product_admin_panel')  # Redirect back to the product admin panel
 
+
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_admin_panel')
+    else:
+        form = ProductForm(instance=product)
+    
+    return render(request, 'add_product.html', {'form': form, 'product': product})
+
+
+
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
