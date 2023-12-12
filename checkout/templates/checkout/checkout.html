@@ -2,9 +2,6 @@
 {% load static %}
 {% load bag_tools %}
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
-{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -135,10 +132,10 @@
             </div>
         </div>
     </div>
-    <div id="loading-overlay">
-        <h1 class="text-light logo-font loading-spinner">
+    <div id="loading-overlay" class="text-center mt-5">
+        <h1 class="text-light logo-font">
             <span class="icon">
-                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                <i class="fas fa-sync-alt fa-spin fa-xs text-dark"></i>
             </span>
         </h1>
     </div>
@@ -149,4 +146,18 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    <script>
+        // Hide body
+        document.body.style.backgroundImage = 'none';
+    </script>
+
+<script>
+    // Remove the footer by class
+    const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
+    if (footer) {
+        footer.remove(); // This will completely remove the footer from the DOM
+        // OR
+        // footer.style.display = 'none'; // This will hide the footer, leaving it in the DOM
+    }
+</script>
 {% endblock %}
