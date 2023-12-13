@@ -32,29 +32,28 @@
                 <form action="{% url 'add_comment' product_id=product.id %}" method="post">
                     {% csrf_token %}
                     {{ comment_form.as_p }}
-                    <button type="submit">Add Comment</button>
+                    <button type="submit" class="add-comment-button">Add Comment</button>
                 </form>
 
                 {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if invalid_rating_message %}
-
-    <div class="invalid-rating-message">
-        <p>{{ invalid_rating_message }}</p>
-    </div>
-{% endif %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if invalid_rating_message %}
+                    <div class="invalid-rating-message">
+                        <p>{{ invalid_rating_message }}</p>
+                    </div>
+                {% endif %}
 
                 <!-- Rating Form -->
                 <h2>Add Rating from 1-10</h2>
                 <form action="{% url 'add_rating' product_id=product.id %}" method="post">
                     {% csrf_token %}
                     {{ rating_form.as_p }}
-                    <button type="submit">Add Rating</button>
+                    <button type="submit" class="add-rating-button">Add Rating</button>
                 </form>
 
                 <select name="color">
@@ -65,65 +64,70 @@
                 </select>
 
                 {% if product %}
-                <p>Material: {{ product.material_composition }}</p>
-            {% endif %}
+                    <p>Material: {{ product.material_composition }}</p>
+                {% endif %}
 
                 {% if product.return_days %}
-    <p>You can return within: {{ product.return_days }} days</p>
-{% endif %}
+                    <p>You can return within: {{ product.return_days }} days</p>
+                {% endif %}
 
-{% if product.availability != 'In stock' %}
-    <p>This item is currently out of stock.</p>
-{% endif %}
+                {% if product.availability != 'In stock' %}
+                    <p>This item is currently out of stock.</p>
+                {% endif %}
 
-<form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
-    {% csrf_token %}
-    
-    <!-- Include size and quantity fields from respective forms -->
-    {{ size_form.size }}
-    {{ quantity_form.quantity }}
+                <form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
+                    {% csrf_token %}
+                    {{ size_form.size }}
+                    {{ quantity_form.quantity }}
+                    <input type="hidden" name="price" value="{{ product.price }}">
+                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-1" value="Add to Bag">
+                    <a href="{% url 'all_products' %}" class="btn btn-secondary rounded-0 text-uppercase mt-4 mb-3">
+                        View all products
+                    </a>
+                </form>
 
-    <!-- Add other necessary product details like price -->
-    <input type="hidden" name="price" value="{{ product.price }}">
-    <!-- You can add other necessary product details here as hidden fields -->
+                {% if not request.user.is_authenticated %}
+                    <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment or rating.</p>
+                {% else %}
+                    <p>Tip: Please add either a comment or a rating at a time.</p>
+                {% endif %}
 
-    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-</form>
-        {% if not request.user.is_authenticated %}
-        <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment or rating.</p>
-        {% else %}
-        <p>Tip: Please add either a comment or a rating at a time.</p>
-    {% endif %}
+                <!-- Displaying Comments and Ratings -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Display Comments -->
+                        <h2>Comments</h2>
+                        {% for comment in comments %}
+                            <p>{{ comment.text }}</p>
+                            <p>Posted by: {{ comment.user.username }}</p>
+                            <hr>
+                        {% empty %}
+                            <p>No comments yet.</p>
+                        {% endfor %}
 
-        <!-- Displaying Comments and Ratings -->
-        <div class="row">
-            <div class="col-12">
-                <!-- Display Comments -->
-                <h2>Comments</h2>
-                {% for comment in comments %}
-                    <p>{{ comment.text }}</p>
-                    <p>Posted by: {{ comment.user.username }}</p>
-                    <hr>
-                {% empty %}
-                    <p>No comments yet.</p>
-                {% endfor %}
-
-                <!-- Display Ratings -->
-                <h2>Ratings</h2>
-                {% for rating in ratings %}
-                    <p>Rating: {{ rating.rating }}</p>
-                    <p>Rated by: {{ rating.user.username }}</p>
-                    <hr>
-                {% empty %}
-                    <p>No ratings yet.</p>
-                {% endfor %}
+                        <!-- Display Ratings -->
+                        <h2>Ratings</h2>
+                        {% for rating in ratings %}
+                            <p>Rating: {{ rating.rating }}</p>
+                            <p>Rated by: {{ rating.user.username }}</p>
+                            <hr>
+                        {% empty %}
+                            <p>No ratings yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('footer').hide(); // Hide the footer
+            // Remove the footer
+            $('footer').remove();
+    
+            // Remove the background image
+            $('body').css('background-image', 'none');
         });
     </script>
 {% endblock %}
+

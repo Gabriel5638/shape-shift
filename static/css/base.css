@@ -11,6 +11,15 @@ body {
 }
 
 
+.add-rating-button {
+    margin-bottom: 40px; 
+}
+
+.add-comment-button {
+    margin-bottom: 45px; 
+}
+
+
 .diet-details {
     display: flex;
     flex-direction: column;
