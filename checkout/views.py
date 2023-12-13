@@ -1,6 +1,7 @@
 from django.shortcuts import (
     render, redirect, reverse, get_object_or_404, HttpResponse
 )
+import os
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -140,6 +141,8 @@ def checkout(request):
                                    'your environment?'))
 
     template = 'checkout/checkout.html'
+    stripe_public_key = os.environ.get('STRIPE_PUBLIC_KEY', 'default_value')
+    client_secret = os.environ.get('STRIPE_SECRET_KEY', 'default_value')
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,

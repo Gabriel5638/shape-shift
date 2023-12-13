@@ -62,8 +62,8 @@
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0">${{ total | floatformat:2 }}</p>
-                        <p class="my-0">${{ delivery | floatformat:2 }}</p>
+                        <p class="my-0">${{ grand_total | floatformat:2 }}</p>
+                        <p class="my-0">Free</p>
                         <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
@@ -155,9 +155,7 @@
     // Remove the footer by class
     const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
     if (footer) {
-        footer.remove(); // This will completely remove the footer from the DOM
-        // OR
-        // footer.style.display = 'none'; // This will hide the footer, leaving it in the DOM
+        footer.remove(); 
     }
 </script>
 {% endblock %}
