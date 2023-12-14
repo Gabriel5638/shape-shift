@@ -61,4 +61,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Remove the background image
+            document.body.style.backgroundImage = 'none';
+
+            // Hide the specific footer by targeting its classes
+            const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
+            if (footer) {
+                footer.style.display = 'none';
+            }
+        });
+    </script>
 {% endblock %}

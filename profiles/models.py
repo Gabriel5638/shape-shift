@@ -40,3 +40,19 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
+    
+    
+class Question(models.Model):
+    text = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.text
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    response = models.TextField()
+    rating = models.IntegerField(default=5)
+
+    def __str__(self):
+        return f"{self.user.username} - Q: {self.question.text} - Rating: {self.rating}"

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="questions-container" class="container mt-6">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" class="mt-4"> 
+                    {% csrf_token %}
+                    {% for question in questions %}
+                        <div class="mb-2">
+                            <label for="response_{{ question.id }}" class="form-label fs-6 mb-1">{{ question.text }}</label>
+                            <textarea id="response_{{ question.id }}" name="response_{{ question.id }}" class="form-control form-control-sm" rows="3"></textarea> <!-- Increased rows for comment box -->
+                            <label for="rating_{{ question.id }}" class="form-label fs-6 mb-1">Rating:</label>
+                            <input type="number" id="rating_{{ question.id }}" name="rating_{{ question.id }}" class="form-control form-control-sm" min="1" max="5" value="5">
+                        </div>
+                        <hr class="my-2">
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary btn-sm mt-3">Submit</button> 
+                    <a href="{% url 'home' %}" class="btn btn-secondary btn-sm mt-3">Go Home</a> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Remove the background image
+            document.body.style.backgroundImage = 'none';
+
+            // Hide the specific footer by targeting its classes
+            const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
+            if (footer) {
+                footer.style.display = 'none';
+            }
+        });
+    </script>
+{% endblock %}
+
+
+

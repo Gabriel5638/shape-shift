@@ -49,8 +49,13 @@
             </div>
         </li>
 
-        <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'contact' %}">Contact Us</a>
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="contactus-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Contact/Feedback
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="contactus-link">
+                <a href="{% url 'contact' %}" class="dropdown-item">Contact us</a>
+                <a href="{% url 'questionnaire' %}" class="dropdown-item">Feedback</a>
         </li>
     </ul>
 </div>

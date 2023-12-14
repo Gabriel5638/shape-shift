@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from .models import Question, Answer
 from .forms import UserProfileForm
 
 from checkout.models import Order
@@ -34,6 +35,25 @@ def profile(request):
 
     return render(request, template, context)
 
+@login_required
+def questionnaire(request):
+    questions = Question.objects.all()
+    if request.method == 'POST':
+        for question in questions:
+            response = request.POST.get(f"response_{question.id}")
+            rating = request.POST.get(f"rating_{question.id}")
+            Answer.objects.create(
+                question=question,
+                user=request.user,
+                response=response,
+                rating=rating
+            )
+        return redirect('thank_you')  # Redirect to a thank-you page after submission
+    return render(request, 'questionnaire/questionnaire.html', {'questions': questions})
+
+
+def thank_you_view(request):
+    return render(request, 'thank_you.html') 
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
@@ -50,3 +70,4 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
