@@ -71,7 +71,7 @@ On Instagram we could collab with a popular instagram user and ask them to promo
 ## Mailchimp
 
 Our newsletter sign-up is a vital part of our marketing strategy. It lets users subscribe for exclusive promotions and updates. The collected email lists enable our admin to send subscribers rewards, discounts, and insider info, fostering a loyal customer base.
-
+![Mailchimp](media/mailchimp.PNG)
 
 # Agile
 
