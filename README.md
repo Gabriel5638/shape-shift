@@ -15,7 +15,7 @@ Experience convenience and security with our Stripe payment integration, ensurin
 ShapeShift - Where quality meets performance. Gear up with confidence and style, as you strive towards your fitness goals with our premium collection.
 
 
-Live link to [Shape Shift](#addhere#)
+Live link to [Shape Shift](https://shapeshift-b371800ba4bb.herokuapp.com/)
 
 
 
