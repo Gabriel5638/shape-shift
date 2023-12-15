@@ -31,7 +31,7 @@ Market research unveils a growing trend among health-conscious individuals seeki
 
 Much like luxury cars symbolize status, fitness apparel has become a statement of dedication to wellness. Shapeshift is aiming to promote itself by driving an increased interest in premium fitness wear that seamlessly blends functionality and fashion.
 
-Statistics highlight a rising consumer inclination towards investing in top-tier activewear. ShapeShift's B2C model strategically positions it to cater to this evolving demand, providing consumers with a range of stylish yet performance-driven options. It's a go-to destination for those seeking to enhance their fitness journey with premium, trendsetting activewear.
+Statistics highlight a rising consumer inclination towards investing in activewear that aligns with fashion. ShapeShift's B2C model strategically positions it to cater to this evolving demand, providing consumers with a range of stylish yet performance-driven options. It's a go-to destination for those seeking to enhance their fitness journey with premium, trendsetting activewear.
 
 ![statista](/media/statista.PNG)
 
@@ -59,7 +59,7 @@ People that can afford to buy anything on the website as they make a lot of mone
 We would use the shapeshift facebook page to create campaigns and promote our page by boosting our posts and using facebook ads.
 
 
-![facebook](Add screenshot of facebook page)
+![facebook](media/facebook.PNG)
 
 ### Our secondary marketing platform is Instagram as it has a lot of users interested in working out and clothing and works very well with Facebook.
 
