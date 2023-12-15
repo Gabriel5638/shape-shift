@@ -66,7 +66,7 @@ We would use the shapeshift facebook page to create campaigns and promote our pa
 On Instagram we could collab with a popular instagram user and ask them to promote our shapeshift merch we would send them free clothes and acessories and ask them for a promotion or a hashtag in return to create views and potential customers for our website.
 
 
-![instagram](media/influencer.PNG)
+![instagram](media/influencer.png)
 
 ## Mailchimp
 
