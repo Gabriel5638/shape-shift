@@ -13,6 +13,7 @@ from store.models import Product
 from profiles.models import UserProfile
 
 
+
 from store.context_processor import cart_contents
 
 import stripe
@@ -103,7 +104,7 @@ def checkout(request):
         if not cart:
             messages.error(request,
                            "There's nothing in your cart at the moment")
-            return redirect(reverse('product'))
+            return redirect(reverse('home'))
 
         current_cart = cart_contents(request)
         total = current_cart['grand_total']

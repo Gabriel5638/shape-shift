@@ -1,6 +1,6 @@
 # Shape Shift
 
-![header](addimg)
+![header](/media/responsive.PNG)
 
 Welcome to ShapeShift - Your Ultimate Destination for Premium Fitness Gear!
 
