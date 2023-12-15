@@ -71,7 +71,10 @@ On Instagram we could collab with a popular instagram user and ask them to promo
 ## Mailchimp
 
 Our newsletter sign-up is a vital part of our marketing strategy. It lets users subscribe for exclusive promotions and updates. The collected email lists enable our admin to send subscribers rewards, discounts, and insider info, fostering a loyal customer base.
+
+
 ![Mailchimp](media/mailchimp.PNG)
+
 
 # Agile
 
@@ -80,7 +83,7 @@ In order to complete this project I have used the Agile Methodology. This involv
 
 You can view my user stories in the kanban [board here.](https://github.com/users/Gabriel5638/projects/7/views/1)
 
-![kanban](Add kanban img with posts)
+![kanban](media/stories.PNG)
 
 
 # User Experience
