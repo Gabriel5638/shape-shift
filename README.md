@@ -33,7 +33,7 @@ Much like luxury cars symbolize status, fitness apparel has become a statement o
 
 Statistics highlight a rising consumer inclination towards investing in top-tier activewear. ShapeShift's B2C model strategically positions it to cater to this evolving demand, providing consumers with a range of stylish yet performance-driven options. It's a go-to destination for those seeking to enhance their fitness journey with premium, trendsetting activewear.
 
-![statista](#ADD STATISTIC IMG HERE)
+![statista](/media/statista.PNG)
 
 ## Target Audience
 
