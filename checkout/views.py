@@ -1,6 +1,5 @@
-from django.shortcuts import (
-    render, redirect, reverse, get_object_or_404, HttpResponse
-)
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponse
 import os
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -36,6 +35,7 @@ def cache_checkout_data(request):
                                  'processed right now. Please try '
                                  'again later.'))
         return HttpResponse(content=e, status=400)
+
 
 
 def checkout(request):
@@ -151,6 +151,7 @@ def checkout(request):
     }
 
     return render(request, template, context)
+
 
 
 def checkout_success(request, order_number):
