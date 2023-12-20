@@ -100,13 +100,13 @@ def checkout(request):
             messages.error(request, ('There was an error with your form. '
                                      'Please double check your information.'))
     else:
-        cart = request.session.get('cart', {})
-        if not cart:
+        current_cart = cart_contents(request)
+
+        if len(current_cart["cart_items"]) == 0:
             messages.error(request,
                            "There's nothing in your cart at the moment")
             return redirect(reverse('home'))
 
-        current_cart = cart_contents(request)
         total = current_cart['grand_total']
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
