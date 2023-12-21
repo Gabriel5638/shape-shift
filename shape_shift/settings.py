@@ -30,7 +30,7 @@ TEMPLATES_DIR =  os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['shapeshift-b371800ba4bb.herokuapp.com', 'localhost', '8000-gabriel5638-shapeshift-onyibn5jbw5.ws-eu107.gitpod.io']
 
