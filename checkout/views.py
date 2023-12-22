@@ -65,8 +65,9 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
             order.save()
-            for item_id, item_data in cart.items():
+            for item_id_combo, item_data in cart.items():
                 try:
+                    item_id, size = str(item_id_combo).split("_")
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
@@ -76,14 +77,27 @@ def checkout(request):
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data['items_by_size'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                                product_size=size,
-                            )
-                            order_line_item.save()
+                        size = "S"
+                        if item_data["size"] == "Medium":
+                            size = "M"
+                        elif item_data["size"] == "large":
+                            size = "L"
+                        # Add other sizes below
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=item_data["quantity"],
+                            product_size=size,
+                        )
+                        order_line_item.save()
+                        # for size, quantity in item_data['items_by_size'].items():
+                        #     order_line_item = OrderLineItem(
+                        #         order=order,
+                        #         product=product,
+                        #         quantity=quantity,
+                        #         product_size=size,
+                        #     )
+                        #     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the product in your cart wasn't "
@@ -97,16 +111,6 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
-        else:
-            messages.error(request, ('There was an error with your form. '
-                                     'Please double check your information.'))
-    else:
-        current_cart = cart_contents(request)
-
-        if len(current_cart["cart_items"]) == 0:
-            messages.error(request,
-                           "There's nothing in your cart at the moment")
-            return redirect(reverse('home'))
 
         total = current_cart['grand_total']
         stripe_total = round(total * 100)
@@ -146,7 +150,7 @@ def checkout(request):
     stripe_public_key = os.environ.get('STRIPE_PUBLIC_KEY', 'default_value')
     client_secret = os.environ.get('STRIPE_SECRET_KEY', 'default_value')
     context = {
-        'order_form': order_form,
+        'order_form': OrderForm,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }

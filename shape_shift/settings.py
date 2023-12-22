@@ -238,3 +238,6 @@ CLOUDINARY_CONFIG = {
     "api_key": api_key,
     "api_secret": api_secret
 }
+
+FREE_DELIVERY_THRESHOLD = 100
+STANDARD_DELIVERY_PERCENTAGE = 10
