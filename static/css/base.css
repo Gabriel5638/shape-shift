@@ -10,10 +10,12 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-
+.custom-padding-top {
+    padding-top: 12%; 
+}
 
 .add-rating-button {
-    margin-bottom: 40px; 
+    margin-bottom: 50px; 
 }
 
 .add-comment-button {
