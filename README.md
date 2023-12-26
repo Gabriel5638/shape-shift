@@ -200,17 +200,105 @@ I used COOLORS to generate this:
 - In the top right you can notice the "Myprofile" icon which the user can use to acess to view previous payments and update credit card info
 - You can also see the shopping cart icon for acessing the items before going to checkout. 
 
+![header](media/header.PNG)
 
 ## Footer
 
+![footer](media/footer.PNG)
 - The search bar is positioned at the bottom to avoid conflicting with the navigation bar and to ensure clear differentiation between the two elements for the user.
 
 - I have links to Facebook, Tumblr, Reddit in the footer section icons can be clicked to take the user to shapeshift Facebook page or to acess tumblr or reddit for telling others about the website.
 
 - To avoid diverting the user, when an icon is clicked, the page will open in a new tab.
 
+## Hero
+![hero](media/heroimg.PNG)
+- I named this the hero section because its the most striking aspect of the website.
+- The image is of a weightlifter at the gym which I feel represents what the website is about very well.
+- There is a shop now button which takes people to the all product section of the website.
+- The user can also find a website description and the newsletter sign up there.
+
+## All Products
+![hero](media/allproducts.PNG)
+- Here the user can see all the products in our inventory with some short details about them. 
+
+
+## Car Detail
+![hero](media/productdetailsection.PNG)
+- In this section you can notice more detailed description of the product and details such as size material etc.
+
+## Sign Up Page
+![hero](media/register.PNG)
+- On the register section the user can see the regular sign up form
+
+- It has validation and stops users from using bad emails or bad passwords
+
+
+## Log In Page
+
+![hero](media/login.PNG)
+### Log Out Page
+![hero](media/signout.PNG)
+- Here are both the login and log out pages
+
+
+## Product Management
+![hero](media/adminpage.PNG)
+
+- On this page the admin can add new products edit or delete existing products, so theres no need to go on django admin panel.
+- Just fill in the correct fields on the admin product panel page click the green add product button, then you will be taken to add more product details. After adding the relevant details, simply click the blue add product button and your product should be added along with the image, size, color etc.
+
+![hero](media/addproduct.PNG)
+![hero](media/productbtn.PNG)
+
+## Shopping Cart
+![hero](media/cart.PNG)
+
+- On the cart page the user can has acess to their items that they have added to the cart.
+
+
+## Checkout
+![hero](media/checkout.PNG)
+
+- In the checkout view you can fill in your personal details and press secure checkout to buy your product!
+
+## Order Success
+ADD ORDER SUCESS IMG!
+
+- On this page , you are presented with a quick rundown of your order details that you have just placed.
+
+
+## My Profile
+![hero](media/myprofile.PNG)
+
+- On the "Myprofile" section the logged in user can acess their purchase history and update their delivery details.
+
+
+## Various Toast Messages
+ADD TOAST IMG HERE
+
+ADD TOAST IMG HERE
+
+TOAST IMG
+
+TOAST IMG
+
+- These are the toast messeges that alert the user when they sign out or order a product etc.
+
+
+## 404 Page
+![hero](media/404page.PNG)
+
+- This is our 404 page thats used to throw out errors whenever a user is attempting to access a page that doesn't work or hes not allowed to.
 
 
 
+## Admin Page
+![hero](media/adminpanel.PNG)
+
+- As you can see our admin page is well structured and organized.
+- It allows us to do all the CRUD actions that we require and can really manage the whole store flawlessly.
+- The admin can also change a users status or give them permisions.
+- The admin is also allowed to change the questions on the feedback page and remove any ofensive answers.
 
 
