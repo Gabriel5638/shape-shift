@@ -74,6 +74,9 @@ Our newsletter sign-up is a vital part of our marketing strategy. It lets users 
 
 
 ![Mailchimp](media/mailchimp.PNG)
+![Mailchimp](media/mailchimpemails.PNG)
+![Mailchimp](media/newsletter.PNG)
+
 
 
 # Agile
@@ -141,7 +144,73 @@ Shapeshift needs to have these features:
 19. As a **user** I can **add products to my shopping cart** so that **I can see how much i am spending and the total cost**
 
 # Design Scheme
-To make this project stand out among other fitness websites that offer similar things I decided to offer free diets and workout routines and make the pages look very attractive and flashy especially the diet page using videos of food related to the specific diet as where other subscription based websites ask for money I would offer these for free to attract customers.
+In crafting this website to shine amidst its counterparts, I've innovated by introducing a pioneering food tracker and journal app exclusively for registered users. This unique feature empowers individuals to effortlessly monitor their dietary habits, a rarity among comparable platforms I've extensively researched. Coupled with a sleek, user-friendly layout, the interface boasts simplicity and intuitiveness. The carefully chosen color palette further enriches the user experience, ensuring a seamless journey through the site's functionalities.
 
-This was done with aid of cool videos, of foods being prepared I found on pexels I will go more into detail about them in the "Features" section.
+
+## Wireframes
+
+
+### Homepage
+![wire](media/homewireframe.PNG)
+
+### Product page
+![wire](media/homewireframe.PNG)
+
+### Product detail
+![wire](media/productdetail.PNG)
+
+### Checkout cart
+![wire](media/checkoutcart.PNG)
+
+
+### Colors
+
+ I opted for a black and white color scheme to ensure that users can easily read and engage with the content on my website. This timeless combination not only looks sophisticated but also creates a clean, distraction-free environment. It helps maintain a consistent style while ensuring accessibility for everyone visiting the site.
+
+I used COOLORS to generate this:
+
+![colors](media/blacknwhite.PNG)
+
+
+## Fonts
+
+- I used a font named Montserrat because I beleive it matches the website look and feel well, after testing other fonts. 
+
+- You can find the font here [Montserrat](https://fonts.google.com/specimen/Montserrat?query=montserrat)
+
+
+## Images
+
+- Images for products were taken from Pintrest website, Pintrest had many product images and models I found useful.
+
+- The Hero image was taken from Pexels.
+
+
+# Data Scheme
+
+- Used DrawSQL to present my models
+
+![data](media/datamodel.PNG)
+
+
+## Header
+
+- I made a unique logo by using the code institute butique ado video
+- There are navigation buttons which have dropdown menus to select further categories.
+- In the top right you can notice the "Myprofile" icon which the user can use to acess to view previous payments and update credit card info
+- You can also see the shopping cart icon for acessing the items before going to checkout. 
+
+
+## Footer
+
+- The search bar is positioned at the bottom to avoid conflicting with the navigation bar and to ensure clear differentiation between the two elements for the user.
+
+- I have links to Facebook, Tumblr, Reddit in the footer section icons can be clicked to take the user to shapeshift Facebook page or to acess tumblr or reddit for telling others about the website.
+
+- To avoid diverting the user, when an icon is clicked, the page will open in a new tab.
+
+
+
+
+
 
