@@ -53,7 +53,7 @@ def questionnaire(request):
 
 
 def thank_you_view(request):
-    return render(request, 'thank_you.html') 
+    return render(request, 'questionnaire/thank_you.html')
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
