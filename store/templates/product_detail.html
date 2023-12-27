@@ -2,132 +2,137 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
-                    {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
-                    {% else %}
-                        <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <!-- Comment Form -->
-                <h2>Add Comment</h2>
-                <form action="{% url 'add_comment' product_id=product.id %}" method="post">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <button type="submit" class="add-comment-button">Add Comment</button>
-                </form>
-
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                {% if invalid_rating_message %}
-                    <div class="invalid-rating-message">
-                        <p>{{ invalid_rating_message }}</p>
-                    </div>
-                {% endif %}
-
-                <!-- Rating Form -->
-                <h2>Add Rating from 1-10</h2>
-                <form action="{% url 'add_rating' product_id=product.id %}" method="post">
-                    {% csrf_token %}
-                    {{ rating_form.as_p }}
-                    <button type="submit" class="add-rating-button">Add Rating</button>
-                </form>
-
-                <select name="color">
-                    <option value="">Select Color</option>
-                    {% for color_choice in product.COLOR_CHOICES %}
-                        <option value="{{ color_choice.0 }}">{{ color_choice.1 }}</option>
-                    {% endfor %}
-                </select>
-
-                {% if product %}
-                    <p>Material: {{ product.material_composition }}</p>
-                {% endif %}
-
-                {% if product.return_days %}
-                    <p>You can return within: {{ product.return_days }} days</p>
-                {% endif %}
-
-                {% if product.availability != 'In stock' %}
-                    <p>This item is currently out of stock.</p>
-                {% endif %}
-
-                <form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
-                    {% csrf_token %}
-                    {{ size_form.size }}
-                    {{ quantity_form.quantity }}
-                    <input type="hidden" name="price" value="{{ product.price }}">
-                    <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-1" value="Add to Bag">
-                    <a href="{% url 'all_products' %}" class="btn btn-secondary rounded-0 text-uppercase mt-4 mb-3">
-                        View all products
-                    </a>
-                </form>
-
-                {% if not request.user.is_authenticated %}
-                    <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment or rating.</p>
+<div class="overlay"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="image-container my-5">
+                {% if product.image %}
+                <a href="{{ product.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"></a>
                 {% else %}
-                    <p>Tip: Please add either a comment or a rating at a time.</p>
+                <a href="">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}"></a>
                 {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <!-- Comment Form -->
+            <h2>Add Comment</h2>
+            <form action="{% url 'add_comment' product_id=product.id %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="add-comment-button">Add Comment</button>
+            </form>
 
-                <!-- Displaying Comments and Ratings -->
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Display Comments -->
-                        <h2>Comments</h2>
-                        {% for comment in comments %}
-                            <p>{{ comment.text }}</p>
-                            <p>Posted by: {{ comment.user.username }}</p>
-                            <hr>
-                        {% empty %}
-                            <p>No comments yet.</p>
-                        {% endfor %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if invalid_rating_message %}
+            <div class="invalid-rating-message">
+                <p>{{ invalid_rating_message }}</p>
+            </div>
+            {% endif %}
 
-                        <!-- Display Ratings -->
-                        <h2>Ratings</h2>
-                        {% for rating in ratings %}
-                            <p>Rating: {{ rating.rating }}</p>
-                            <p>Rated by: {{ rating.user.username }}</p>
-                            <hr>
-                        {% empty %}
-                            <p>No ratings yet.</p>
-                        {% endfor %}
-                    </div>
+            <!-- Rating Form -->
+            <h2>Add Rating from 1-10</h2>
+            <form action="{% url 'add_rating' product_id=product.id %}" method="post">
+                {% csrf_token %}
+                {{ rating_form.as_p }}
+                <button type="submit" class="add-rating-button">Add Rating</button>
+            </form>
+
+            <select name="color">
+                <option value="">Select Color</option>
+                {% for color_choice in product.COLOR_CHOICES %}
+                <option value="{{ color_choice.0 }}">{{ color_choice.1 }}</option>
+                {% endfor %}
+            </select>
+
+            {% if product %}
+            <p>Material:
+                {{ product.material_composition }}</p>
+            {% endif %}
+
+            {% if product.return_days %}
+            <p>You can return within:
+                {{ product.return_days }}
+                days</p>
+            {% endif %}
+
+            {% if product.availability != 'In stock' %}
+            <p>This item is currently out of stock.</p>
+            {% endif %}
+
+            <form action="{% url 'add_to_cart' product_id=product.id %}" method="post">
+                {% csrf_token %}
+                {{ size_form.size }}
+                {{ quantity_form.quantity }}
+                <input type="hidden" name="price" value="{{ product.price }}">
+                <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-1" value="Add to Bag">
+                <a href="{% url 'all_products' %}" class="btn btn-secondary rounded-0 text-uppercase mt-4 mb-3">
+                    View all products
+                </a>
+            </form>
+
+            {% if not request.user.is_authenticated %}
+            <p>Please
+                <a href="{% url 'account_login' %}">log in</a>
+                to add a comment or rating.
+            </p>
+            {% else %}
+            <p>Tip: Please add either a comment or a rating at a time.</p>
+            {% endif %}
+
+            <!-- Displaying Comments and Ratings -->
+            <div class="row">
+                <div class="col-12">
+                    <!-- Display Comments -->
+                    <h2>Comments</h2>
+                    {% for comment in comments %}
+                    <p>{{ comment.text }}</p>
+                    <p>Posted by:
+                        {{ comment.user.username }}</p>
+                    <hr>
+                    {% empty %}
+                    <p>No comments yet.</p>
+                    {% endfor %}
+
+                    <!-- Display Ratings -->
+                    <h2>Ratings</h2>
+                    {% for rating in ratings %}
+                    <p>Rating:
+                        {{ rating.rating }}</p>
+                    <p>Rated by:
+                        {{ rating.user.username }}</p>
+                    <hr>
+                    {% empty %}
+                    <p>No ratings yet.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Remove the footer
-            $('footer').remove();
-    
-            // Remove the background image
-            $('body').css('background-image', 'none');
-        });
-    </script>
-{% endblock %}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () { // Remove the footer
+        $('footer').remove();
 
+        // Remove the background image
+        $('body').css('background-image', 'none');
+    });
+</script>
+{% endblock %}

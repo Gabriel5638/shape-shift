@@ -36,43 +36,41 @@
                                 <td>{{ cart_item.size }}</td>
                                 <td>{{ cart_item.quantity }}</td>
                                 <td>
-                                    <img src="{{ cart_item.product.image.url }}" alt="Product Image">
-                                </td>
-                                <td>${{ cart_item.price }}</td>
-                                <td>
-                                    {% if user.is_authenticated %}
-                                        <a href="{% url 'remove_from_cart' cart_item.id %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
-                                    {% else %}
-                                        <!-- Handle remove for anonymous user differently -->
-                                        <a href="{% url 'guest_remove_from_cart' cart_item.product.id cart_item.size  %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                    <img src="{{ cart_item.product.image.url }}" alt="Product Image"></td>
+                                    <td>${{ cart_item.price }}</td>
+                                    <td>
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'remove_from_cart' cart_item.id %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
+                                        {% else %}
+                                            <!-- Handle remove for anonymous user differently -->
+                                            <a href="{% url 'guest_remove_from_cart' cart_item.product.id cart_item.size %}" class="btn btn-warning btn-sm btn-cart-item-remove">Remove from Cart</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Secure Checkout Button -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Secure Checkout</a>
+                    <a href="{% url 'all_products' %}" class="btn btn-primary btn-lg">keep shopping</a>
+                </div>
             </div>
         </div>
 
-        <!-- Secure Checkout Button -->
-        <div class="row mt-4">
-            <div class="col-md-12 text-center">
-                <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Secure Checkout</a>
-                <a href="{% url 'all_products' %}" class="btn btn-primary btn-lg">keep shopping</a>
-            </div>
-        </div>
-    </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () { // Remove the background image
+                document.body.style.backgroundImage = 'none';
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Remove the background image
-            document.body.style.backgroundImage = 'none';
-
-            // Hide the specific footer by targeting its classes
-            const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
-            if (footer) {
-                footer.style.display = 'none';
-            }
-        });
-    </script>
-{% endblock %}
+                // Hide the specific footer by targeting its classes
+                const footer = document.querySelector('footer.container-fluid.bg-dark.text-white.py-1');
+                if (footer) {
+                    footer.style.display = 'none';
+                }
+            });
+        </script>
+    {% endblock %}

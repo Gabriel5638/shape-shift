@@ -21,6 +21,7 @@ body {
     background-color: #000;
 }
 
+/*style website text and size */
 .website-description {
     color: #fff;
     font-size: 19px;
@@ -57,6 +58,7 @@ body {
     border-style: outset;
 }
 
+/* style buttons */
 .btn-black {
     background: #000;
     color: #fff;
@@ -91,35 +93,37 @@ body::-webkit-scrollbar {
 }
 
 
+/* style contact form display color etc */
 .contact-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Adjust this value as needed for the desired height */
-    background-color: #fff; /* White background */
+    height: 100vh; 
+    background-color: #fff; 
     color: #000;
 }
 
 /* Additional styling for form elements */
 #contactForm {
-    width: 300px; /* Adjust width as needed */
+    width: 300px; 
 }
 
 input[type="email"],
 input[type="text"],
 textarea {
-    width: 100%; /* Full width for inputs */
-    padding: 8px; /* Adjust padding as needed */
-    margin-bottom: 10px; /* Adjust margin between inputs */
-    border: 1px solid #ccc; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    box-sizing: border-box; /* Include padding in width */
-    resize: none; /* Disable textarea resizing */
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    resize: none; 
 }
 
+/* Adjust textarea height */
 textarea {
-    height: 120px; /* Adjust textarea height */
+    height: 120px; 
 }
 
 /* Disable text selection in the textarea */
@@ -129,12 +133,12 @@ textarea::selection {
 
 
 
-
+/* style footer area */
 footer {
     width: 100%;
-    height: 48px; /* Adjust this value based on your footer height */
-    background-color: #343a40; /* Your footer background color */
-    color: white; /* Your footer text color */
+    height: 48px; 
+    background-color: #343a40; 
+    color: white; 
     position: fixed;
     bottom: 0;
     left: 0;

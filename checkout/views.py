@@ -13,7 +13,6 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 
 
-
 from store.context_processor import cart_contents
 
 import stripe
@@ -36,7 +35,6 @@ def cache_checkout_data(request):
                                  'processed right now. Please try '
                                  'again later.'))
         return HttpResponse(content=e, status=400)
-
 
 
 def checkout(request):
@@ -90,14 +88,7 @@ def checkout(request):
                             product_size=size,
                         )
                         order_line_item.save()
-                        # for size, quantity in item_data['items_by_size'].items():
-                        #     order_line_item = OrderLineItem(
-                        #         order=order,
-                        #         product=product,
-                        #         quantity=quantity,
-                        #         product_size=size,
-                        #     )
-                        #     order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the product in your cart wasn't "
@@ -156,7 +147,6 @@ def checkout(request):
     }
 
     return render(request, template, context)
-
 
 
 def checkout_success(request, order_number):
