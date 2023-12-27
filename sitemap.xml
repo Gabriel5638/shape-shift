@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/cart/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=/diet/meals/new/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=/diet/meals/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/products/protein/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/creatine/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/electrolytes/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/preworkout/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/postworkout/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/products/women/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/men/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/all-products/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/keychains/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/wriststraps/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/yogamats/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/foamrollers/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/contact/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=/profile/questionnaire/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/signup/?next=%2Fdiet%2Fmeals%2Fnew%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/signup/?next=%2Fdiet%2Fmeals%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/store/product_detail/11/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/store/store/product_detail/10/</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/signup/?next=%2Fprofile%2Fquestionnaire%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=%2Fdiet%2Fmeals%2Fnew%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=%2Fdiet%2Fmeals%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://shapeshift-b371800ba4bb.herokuapp.com/accounts/login/?next=%2Fprofile%2Fquestionnaire%2F</loc>
+  <lastmod>2023-12-27T18:06:53+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
