@@ -2,12 +2,6 @@
 {% load static %}
 
 {% block content %}
-    <style>
-        img {
-            max-width: 100px;
-            height: auto;
-        }
-    </style>
 
     <div class="container">
         <div class="row mt-4">
@@ -36,7 +30,7 @@
                                 <td>{{ cart_item.size }}</td>
                                 <td>{{ cart_item.quantity }}</td>
                                 <td>
-                                    <img src="{{ cart_item.product.image.url }}" alt="Product Image"></td>
+                                    <img src="{{ cart_item.product.image.url }}" alt="Product Image" style="max-width: 100px; height: auto;">
                                     <td>${{ cart_item.price }}</td>
                                     <td>
                                         {% if user.is_authenticated %}
