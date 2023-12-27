@@ -76,6 +76,8 @@ Our newsletter sign-up is a vital part of our marketing strategy. It lets users 
 ![Mailchimp](media/mailchimp.PNG)
 ![Mailchimp](media/mailchimpemails.PNG)
 ![Mailchimp](media/newsletter.PNG)
+![Mailchimp](media/newsletterfrom.PNG)
+![Mailchimp](media/newslettermail.PNG)
 
 
 
