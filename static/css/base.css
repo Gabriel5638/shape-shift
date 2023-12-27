@@ -10,6 +10,20 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+#mc_embed_signup {
+    background-color: #222;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 300px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+}
+
+#mc-embedded-subscribe {
+    margin-bottom: 10%;
+}
+
 .custom-padding-top {
     padding-top: 12%; 
 }
