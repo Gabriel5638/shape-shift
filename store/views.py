@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from .models import Product, Comment, Rating
 from .models import CartItem
 from django.contrib.auth.decorators import login_required
@@ -11,10 +12,8 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import stripe
-from django.contrib import messages
 from store.forms import CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from store.forms import ProductForm
-from django.contrib import messages
 from decimal import Decimal
 from django.core.serializers import serialize
 from django.conf import settings
@@ -291,6 +290,9 @@ def add_to_cart_view(request, product_id):
                 cart_item.quantity += selected_quantity
                 cart_item.price += product_price
                 cart_item.save()
+                messages.success(request, f'Updated {product.name} quantity to {cart_item.quantity}')
+            else:
+                messages.success(request, f'Added {product.name} to your cart')
         else:
             session_cart = request.session.get('cart', {})
             item_key = f'{product_id}_{selected_size}'
@@ -384,45 +386,28 @@ def view_cart(request):
 
 
 def remove_from_cart(request, cart_item_id):
-
-    # Save the price of the item about to be deleted
-    # item_price = cart_item.price
-
-    # Remove the item from the cart
-
-    # Recalculate the total price after deletion
+    # Remove the item from the cart if the user is authenticated
     if request.user.is_authenticated:
         cart_item = get_object_or_404(CartItem, pk=cart_item_id)
         cart_item.delete()
-    # total_price = calculate_cart_total(cart_items)
+        messages.success(request, 'Item removed from your cart.')
 
-    # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
 
 
+
 def guest_remove_from_cart(request, cart_product_id, selected_size):
-
-    # Save the price of the item about to be deleted
-    # item_price = cart_item.price
-
-    # Remove the item from the cart
-
-    # Recalculate the total price after deletion
     if not request.user.is_authenticated:
         session_cart = request.session.get('cart', {})
         item_key = f'{cart_product_id}_{selected_size}'
         if item_key in session_cart:
-            del (session_cart[item_key])
-        request.session['cart'] = session_cart
+            del session_cart[item_key]
+            request.session['cart'] = session_cart
+            messages.success(request, 'Item removed from your cart.')
 
-    # total_price = calculate_cart_total(cart_items)
-
-    # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
 
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
-
 
 def create_payment_intent(request):
     if request.method == 'POST':

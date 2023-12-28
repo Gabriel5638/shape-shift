@@ -225,8 +225,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 STRIPE_CURRENCY = 'eur' 
 
-
-
 # Load Cloudinary configuration from environment variables
 cloud_name = os.environ.get("CLOUDINARY_CLOUD_NAME")
 api_key = os.environ.get("CLOUDINARY_API_KEY")
