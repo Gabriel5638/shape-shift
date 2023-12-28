@@ -45,9 +45,9 @@ def checkout(request):
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
     if request.method == 'POST':
         cart = request.session.get('cart', {})
 
@@ -109,7 +109,6 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
-
 
         # Attempt to prefill the form with any info
         # the user maintains in their profile

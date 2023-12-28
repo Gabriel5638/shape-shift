@@ -506,9 +506,31 @@ I ran the every CSS code I created through W3C Validator and returned no errors:
 ![header](media/css.PNG)
 ### HTML Validator
 I ran the entire website through HTML Validator and every html template used and returned no errors:
-![header](media/htmlvalidator.JPG)
-###
-I also used Lighthouse on most pages and they were all good scores, Accesibility is barely not in the green because of stylistic choices
-![header](media/lighthouse.JPG)
+![header](media/htmlfullwebsite.PNG)
+![header](media/htmproducts.PNG)
+![header](media/checkouthtml.PNG)
+![header](media/allproductshtml.PNG)
+![header](media/contactformhtml.PNG)
+![header](media/journalhtml.PNG)
+![header](media/questionhtml.PNG)
+### Lighthouse
+I also used Lighthouse on most pages and it looks good most are in the green.
+![header](media/lighthouse.PNG)
+
 ### Pep8 Validator
-#### I used the "black" feature to check python code in most pages and it returned no error.
+- I checked every single python page and they all passed with no errors. Here are some example screenshots of the code passing
+<details><summary>Checkout App Views</summary>
+<img src="media/checkoutpep8.PNG">
+</details>
+
+<details><summary>Store App Views</summary>
+<img src="media/storepep8.PNG">
+</details>
+ 
+<details><summary>Profile App Views</summary>
+<img src="media/profilespep8.PNG">
+</details>
+
+<details><summary>Diet App Views</summary>
+<img src="media/dietpep8.PNG">
+</details>

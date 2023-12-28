@@ -6,6 +6,7 @@ from diet.forms import MealForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 # View for creating a new meal
 def meal_create(request):
@@ -18,7 +19,7 @@ def meal_create(request):
             return redirect('meal_list')
     else:
         form = MealForm()
-    
+
     return render(request, 'meal_create.html', {'form': form})
 
 
@@ -37,6 +38,3 @@ def meal_delete(request, pk):
 def meal_list(request):
     meals = MealJournalEntry.objects.all()
     return render(request, 'meal_list.html', {'meals': meals})
-
-
-
