@@ -276,14 +276,11 @@ ADD ORDER SUCESS IMG!
 - On the "Myprofile" section the logged in user can acess their purchase history and update their delivery details.
 
 
-## Various Toast Messages
-ADD TOAST IMG HERE
-
+## Various Toast Messages and notifications
+![hero](media/sweetalert.PNG)
+![hero](media/sucessweetalert.PNG)
 ![hero](media/nothing.PNG)
 
-TOAST IMG
-
-TOAST IMG
 
 - These are the toast messeges that alert the user when they sign out or order a product etc.
 

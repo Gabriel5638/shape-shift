@@ -35,6 +35,7 @@ def profile(request):
 
     return render(request, template, context)
 
+
 @login_required
 def questionnaire(request):
     questions = Question.objects.all()
@@ -48,12 +49,18 @@ def questionnaire(request):
                 response=response,
                 rating=rating
             )
-        return redirect('thank_you')  # Redirect to a thank-you page after submission
-    return render(request, 'questionnaire/questionnaire.html', {'questions': questions})
+        # Redirect to a thank-you page after submission
+        return redirect('thank_you')
+    return render(
+        request,
+        'questionnaire/questionnaire.html',
+        {'questions': questions}
+    )
 
 
 def thank_you_view(request):
     return render(request, 'questionnaire/thank_you.html')
+
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
@@ -70,4 +77,3 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
-

@@ -4,7 +4,7 @@ from .models import Product, Comment, Rating
 from .models import CartItem
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-import json 
+import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db.models import Q
 from django.core.mail import send_mail
@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import stripe
 from django.contrib import messages
-from store.forms import  CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
+from store.forms import CommentForm, RatingForm, SizeSelectionForm, ProductQuantityForm
 from store.forms import ProductForm
 from django.contrib import messages
 from decimal import Decimal
@@ -30,7 +30,8 @@ def all_products(request):
 
     # Define default sorting options
     sort = request.GET.get('sort', 'name')  # Default to sorting by name
-    direction = request.GET.get('direction', 'asc')  # Default to ascending order
+    # Default to ascending order
+    direction = request.GET.get('direction', 'asc')
 
     # Handle sorting based on user input
     if sort == 'name':
@@ -69,63 +70,60 @@ def all_products(request):
 
 def women_products(request):
     products = Product.objects.filter(category='Women')
-    return render(request, 'store/category_products.html', {'products': products,"title": "Women's"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Women's"})
 
 
-def men_product_list(request):  
-    products = Product.objects.filter(category='Men')  
-    return render(request, 'store/category_products.html', {'products': products,"title": "Men's"})
+def men_product_list(request):
+    products = Product.objects.filter(category='Men')
+    return render(request, 'store/category_products.html', {'products': products, "title": "Men's"})
 
 
 def keychain_products(request):
     products = Product.objects.filter(category="Keychains")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Keychains"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Keychains"})
 
 
 def wriststraps_products(request):
     products = Product.objects.filter(category="Wriststraps")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Wriststraps"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Wriststraps"})
 
 
 def yogamats_products(request):
     products = Product.objects.filter(category="Yogamats")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Yogamats"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Yogamats"})
 
 
 def foamrollers_products(request):
     products = Product.objects.filter(category="Foamrollers")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Foamrollers"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Foamrollers"})
 
 
 def protein_products(request):
     products = Product.objects.filter(category="Protein")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Protein"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Protein"})
 
 
 def creatine_products(request):
     products = Product.objects.filter(category="Creatine")
     return render(request, 'store/category_products.html', {
-    "products": products, 
-    "title": "Creatine"
-})
+        "products": products,
+        "title": "Creatine"
+    })
 
 
 def electrolytes_products(request):
     products = Product.objects.filter(category="Electrolytes")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Electrolytes"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Electrolytes"})
 
 
 def preworkout_products(request):
     products = Product.objects.filter(category="Preworkout")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Preworkouts"})
+    return render(request, 'store/category_products.html', {'products': products, "title": "Preworkouts"})
 
 
 def postworkout_products(request):
     products = Product.objects.filter(category="Postworkout")
-    return render(request, 'store/category_products.html', {'products': products,"title": "Postworkouts"})
-
-
-
+    return render(request, 'store/category_products.html', {'products': products, "title": "Postworkouts"})
 
 
 def product_detail(request, product_id):
@@ -157,8 +155,6 @@ def product_detail(request, product_id):
             if size_form.is_valid():
                 selected_size = size_form.cleaned_data['size']
 
-               
-
                 # Redirect to the product detail page or another appropriate page
                 return redirect('product_detail', product_id=product_id)
         elif 'quantity_form' in request.POST:  # Handling quantity form
@@ -188,15 +184,19 @@ def product_detail(request, product_id):
 
 def add_size(request):
     if request.method == 'POST':
-        product_id = request.POST.get('product_id')  # Assuming the product ID is sent via POST
+        # Assuming the product ID is sent via POST
+        product_id = request.POST.get('product_id')
         size = request.POST.get('size')  # Assuming the size is sent via POST
-        quantity = int(request.POST.get('quantity', 0))  # Assuming the quantity is sent via POST
+        # Assuming the quantity is sent via POST
+        quantity = int(request.POST.get('quantity', 0))
 
         # Retrieve the product instance based on the provided product_id
-        product_instance = Product.objects.get(pk=product_id)  # Assuming Product is your product model
+        # Assuming Product is your product model
+        product_instance = Product.objects.get(pk=product_id)
 
         # Add the size and quantity to the ProductQuantity model
-        ProductQuantity.add_size(product=product_instance, size=size, quantity=quantity)
+        ProductQuantity.add_size(
+            product=product_instance, size=size, quantity=quantity)
 
         # Redirect to a success page or another appropriate view
         return redirect('success')  # Change 'success' to your desired URL name
@@ -216,13 +216,14 @@ def add_quantity(request, product_id):
         # Validate and process the selected quantity data
         # Here, you can save the selected quantity for the product
         # Example:
-        ProductQuantity.objects.create(product=product, quantity=selected_quantity)
+        ProductQuantity.objects.create(
+            product=product, quantity=selected_quantity)
 
         # Redirect to the product detail page or any other appropriate page
         return redirect('product_detail', product_id=product_id)
 
     # Handle other HTTP methods if needed or provide a default response
-    return redirect('product_detail', product_id=product_id) 
+    return redirect('product_detail', product_id=product_id)
 
 
 @login_required
@@ -244,21 +245,23 @@ def add_comment(request, product_id):
 
 @login_required
 def add_rating(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)  
+    product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
             new_rating = form.save(commit=False)
             new_rating.user = request.user
             new_rating.product = product
-            
+
             if 1 <= new_rating.rating <= 10:
                 new_rating.save()
                 messages.success(request, 'Rating added successfully!')
             else:
-                messages.error(request, 'Invalid rating. Please provide a rating between 1 and 10.')
+                messages.error(
+                    request, 'Invalid rating. Please provide a rating between 1 and 10.')
         else:
-            messages.error(request, 'Invalid rating. Please provide a rating between 1 and 10.')
+            messages.error(
+                request, 'Invalid rating. Please provide a rating between 1 and 10.')
     else:
         form = RatingForm()
     return redirect('product_detail', product_id=product_id)
@@ -269,10 +272,10 @@ def add_to_cart_view(request, product_id):
         selected_size = request.POST.get('size')
         selected_quantity = int(request.POST.get('quantity', 1))
         product = Product.objects.get(pk=product_id)
-        
+
         if product.availability != 'In stock':
             return HttpResponse("We are sorry, but this item is out of stock. <a href='{}'>Go Back to All Products</a>".format(reverse('all_products')))
-        
+
         product_price = product.price * Decimal(selected_quantity)
         product_image = product.image.url if product.image else None
 
@@ -281,7 +284,8 @@ def add_to_cart_view(request, product_id):
                 user=request.user,
                 product=product,
                 size=selected_size,
-                defaults={'quantity': selected_quantity, 'image': product_image, 'price': product_price}
+                defaults={'quantity': selected_quantity,
+                          'image': product_image, 'price': product_price}
             )
             if not created:
                 cart_item.quantity += selected_quantity
@@ -306,25 +310,28 @@ def add_to_cart_view(request, product_id):
             # Print the session contents
             if 'cart' in request.session:
                 print(request.session['cart'])
-        
+
         return HttpResponseRedirect(reverse('cart'))
     else:
 
         pass
-    
+
+
 def product_admin_panel(request):
     products = Product.objects.all()
     return render(request, 'product_admin.html', {'products': products})
 
+
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    return redirect('product_admin_panel')  # Redirect back to the product admin panel
+    # Redirect back to the product admin panel
+    return redirect('product_admin_panel')
 
 
 def edit_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    
+
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -332,9 +339,8 @@ def edit_product(request, product_id):
             return redirect('product_admin_panel')
     else:
         form = ProductForm(instance=product)
-    
-    return render(request, 'add_product.html', {'form': form, 'product': product})
 
+    return render(request, 'add_product.html', {'form': form, 'product': product})
 
 
 def add_product(request):
@@ -342,7 +348,8 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('product_admin_panel')  # Redirect back to the product admin panel after successful addition
+            # Redirect back to the product admin panel after successful addition
+            return redirect('product_admin_panel')
     else:
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
@@ -391,7 +398,8 @@ def remove_from_cart(request, cart_item_id):
 
     # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
-    
+
+
 def guest_remove_from_cart(request, cart_product_id, selected_size):
 
     # Save the price of the item about to be deleted
@@ -404,7 +412,7 @@ def guest_remove_from_cart(request, cart_product_id, selected_size):
         session_cart = request.session.get('cart', {})
         item_key = f'{cart_product_id}_{selected_size}'
         if item_key in session_cart:
-            del(session_cart[item_key])
+            del (session_cart[item_key])
         request.session['cart'] = session_cart
 
     # total_price = calculate_cart_total(cart_items)
@@ -412,7 +420,9 @@ def guest_remove_from_cart(request, cart_product_id, selected_size):
     # Redirect back to the cart page with the updated total price or any other appropriate page
     return redirect('cart')
 
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 def create_payment_intent(request):
     if request.method == 'POST':
