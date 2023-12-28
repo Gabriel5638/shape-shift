@@ -23,7 +23,35 @@ Live link to [Shape Shift](https://shapeshift-b371800ba4bb.herokuapp.com/)
 * [Market Research](#market-research)
     - [Target Audience](#target-audience)
     - [Market Strategy](#market-strategy)
-
+* [Agile](#agile)
+* [User Experience](#user-experience)
+    + [User Stories](#user-stories)
+* [Design Scheme](#design_scheme)
+    - [Wireframes](#wireframes)
+    - [Colors](#colors)
+    - [Fonts](#fonts)
+    - [Images](#images)
+* [Data Scheme](#data_scheme)
+* [Features](#features)
+    + [Header](#header)
+    + [Footer](#footer)
+    + [Hero](#hero)
+    + [All products](#all-products)
+    + [Product Detail](#product-detail)     
+    + [Sign Up Page](#sign-up-page)
+    + [Log In Page](#log-in-page)
+    + [Log Out Page](#log-out-page)       
+    + [Admin Page](#admin-page)
+* [SEO](#seo)
+* [Stripe](#stripe)
+* [Testing](#testing)
+    + [Manual Testing](#manual-testing)
+    + [Validator Testing](#validator-testing)
+* [Deployment](#deployment)
+* [Technology Used](#technology-used)
+* [Credits](#credits)
+* [Bugs](#bugs)
+* [Changelog](#Changelog-for-resubmission)
 
 # Market Research
 
@@ -158,7 +186,7 @@ In crafting this website to shine amidst its counterparts, I've innovated by int
 ### Product page
 ![wire](media/homewireframe.PNG)
 
-### Product detail
+### Product
 ![wire](media/productdetail.PNG)
 
 ### Checkout cart
@@ -225,7 +253,7 @@ I used COOLORS to generate this:
 - Here the user can see all the products in our inventory with some short details about them. 
 
 
-## Car Detail
+## Product Detail
 ![hero](media/productdetailsection.PNG)
 - In this section you can notice more detailed description of the product and details such as size material etc.
 
@@ -513,6 +541,11 @@ I ran the entire website through HTML Validator and every html template used and
 ![header](media/contactformhtml.PNG)
 ![header](media/journalhtml.PNG)
 ![header](media/questionhtml.PNG)
+
+### Custom javascript validation
+I checked my javascript using jshint
+![header](media/jsvalidation.PNG)
+
 ### Lighthouse
 I also used Lighthouse on most pages and it looks good most are in the green.
 ![header](media/lighthouse.PNG)
@@ -534,3 +567,145 @@ I also used Lighthouse on most pages and it looks good most are in the green.
 <details><summary>Diet App Views</summary>
 <img src="media/dietpep8.PNG">
 </details>
+
+
+# Deployment
+
+## 1. Get the project running locally with Django
+
+- Go to Code Institutes Github
+
+- On the Code Institute's "Full template", click on the "Use this Template" button.
+
+- Open Gitpod from the template and inside Gitpod take the following steps:
+- Install Gunicorn with pip3 "install Gunicorn" and also install django 
+- Next you need to install the database libraries with : pip3 install dj_database_url psycopg2
+- Time to create your Django project, in the terminal window type: django-admin startproject your-chosen-name
+- Next start your Django app with : python3 manage.py startapp your_app_name
+- Add your app to the settings.py file
+- You should be good to go with django now, just type: python3 manage.py runserver
+
+
+## 2. Implement Heroku and AWS
+
+- Create a Heroku account if you dont have one
+
+- Create a new app on heroku by clicking top right "Create new app"
+
+- Go through the steps and select your region
+
+- Click on the Settings tab of your new heroku tab
+
+- Reveal Config vars and add the following configs: 
+
+SECRET_KEY
+
+AWS_ACCESS_KEY_ID
+
+AWS_SECRET_ACCESS_KEY
+
+EMAIL_HOST_PASS
+
+EMAIL_HOST_USER
+
+STRIPE_PUBLIC_KEY
+
+STRIPE_SECRET_KEY
+
+STRIPE_WH_SECRET
+
+DISABLE_COLLECTSTATIC = 1
+
+- Now go down to the Buildpack section click Add Buildpack then select python and Save Changes
+
+- Click on the Deploy tab lower down the page
+
+- Select Github when prompted
+
+- Confirm you want to connect to GitHub and search for the repository then click the connect button
+
+- Make sure you click on Enable Automatic Deploys so heroku deploys whenever you git push
+
+- Create a Procfile "web: gunicorn your_project_name.wsgi"
+- When you've finished coding your website make sure you change the DEBUG to False in settings.py
+- Go back to heroku and take the following steps:
+    - settings > config vars delete the record for DISABLE_COLLECTSTATIC
+
+    - settings > config vars set the record for USE_AWS to True
+
+
+## Technology Used
+
+- HTML5
+- CSS3
+- Python
+- Django
+- Bootstrap
+- FontAwesome
+- Google Fonts
+- GitPod
+- GitHub
+- DevTools
+- Heroku
+- Balsamiq
+- PostgreSQL
+- Allauth
+- Jquery
+- AWS
+- Stripe
+- Sweetalert
+
+
+## Credits
+- Pintrest for the product images
+- Pexels for the hero image 
+- Boutique-ado walk through for the template
+- Previous projects done by Code Institute students - Also a big source of inspiration
+- Code Institute Tutor Team - They were a huge help and I couldn't complete this project without them.
+- Also big thanks to my mentors for helping me out with this final project!
+
+## Bugs
+- This project was the most buggiest I have ever worked on so far but with the help of my great mentors and code institute tutors I managed to get it to work however, I encountered a last minute bug after fixing the checkout page with the help of my mentor. Unfourtunatley due to time constraint I cannot fix this in time for re-submission, it makes the price go to 0.00 for (logged in users only) sometimes and does not delete the cart items for logged in users after sucesfull payment. I know this is part of the functionality but it just appeared today unfourtunatley as it is my last day I fear I cant fix it in time. The email still gets sent with the confirmation to the user and sometimes the price updates as it as you can see in the first picture but I just wanted to inform about this in case it happens when assesor checks this. I am very sorry about this.
+<details><summary>Sometimes its displaying price properley</summary>
+<img src="media/adminbug.PNG">
+</details>
+<details><summary>Bug</summary>
+<img src="media/bug.PNG">
+</details>
+<details><summary>Emailbug</summary>
+<img src="media/emailbug.PNG">
+</details>
+
+## Changelog for resubmission
+After receiving the feedback I have made the following changes : 
+
+### Ecommerce functionality
+Implemented stripe and added webhooks as advised to pass.
+
+### Validation
+Code now passes all validation tools with no errors.
+
+### Readme file elements
+Made sure to finish the readme and add as much information as I could.
+
+### Links
+Made sure there are no broken links.
+
+### Template
+Created 1 template for all the major sections instead of having 1 separate template for every product to comply with the feedback from assessor.
+
+### Wireframe
+Added wireframes and data scheme
+
+### Testing
+Added testing
+
+### SEO
+Added SEO mechanisms sitemap xml and robots.txt
+
+### Facebook page 
+Shapeshift facebook page can be acessed by clicking on the facebook icon on the footer and added picture of it in readme.
+
+### Business model
+Created a more in depth business model for my shapeshift website including target audience marketing strategy and trends.
+
