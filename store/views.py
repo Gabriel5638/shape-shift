@@ -341,8 +341,8 @@ def add_to_cart_view(request, product_id):
                 cart_item.price += product_price
                 cart_item.save()
                 messages.success(
-                    request, f"Updated {product.name} quantity to {
-                        cart_item.quantity}"
+                 request, f"Updated {product.name} quantity to " +
+                f"{cart_item.quantity}"
                 )
             else:
                 messages.success(request, f"Added {product.name} to your cart")
