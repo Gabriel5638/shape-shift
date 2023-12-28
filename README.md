@@ -265,7 +265,7 @@ I used COOLORS to generate this:
 - In the checkout view you can fill in your personal details and press secure checkout to buy your product!
 
 ## Order Success
-ADD ORDER SUCESS IMG!
+![hero](media/checkoutsucess.PNG)
 
 - On this page , you are presented with a quick rundown of your order details that you have just placed.
 
@@ -277,7 +277,9 @@ ADD ORDER SUCESS IMG!
 
 
 ## Various Toast Messages and notifications
-![hero](media/sweetalert.PNG)
+![hero](media/toastsucess.PNG)
+![hero](media/toastremove.PNG)
+![hero](media/toastsignout.PNG)
 ![hero](media/sucessweetalert.PNG)
 ![hero](media/nothing.PNG)
 
@@ -301,3 +303,212 @@ ADD ORDER SUCESS IMG!
 - The admin is also allowed to change the questions on the feedback page and remove any ofensive answers.
 
 
+# SEO
+
+## sitemap.xml
+- I generated a sitemap.xml file from XML-sitemaps and downloaded it.
+- I then added it to my projects root file to help search engines identifying my site properly and navigate more easily.
+
+## Tags
+![hero](media/tags.PNG)
+
+- I've made sure to add lots of descriptive keywords in meta tags ands aria labels in most of my code just to improve SEO.
+
+## robots.txt 
+
+- I also added a file called robots.txt that instructs the search engine where to look and where not to look in our site, this also improves SEO a lot.
+
+
+# STRIPE
+
+- On this project we implemented a service called Stripe to handle payments from our customers.
+- Once you set up webhooks successfully you should be able to see payments succeed in your Stripe dashboard.
+- If you would like to test purchase anything on my website you can use these card details:
+    - Card number: 4242 4242 4242 4242
+    - expiry: any date in the future
+    - cvc: any 3 digits
+    ![hero](media/visatest.PNG)
+
+### As you can see my Stripe webhooks and payments have gone through successfully.
+![hero](media/sucededwebhook.PNG)
+![hero](media/webhook.PNG)
+
+
+# Testing
+
+I have conducted thorough testing of the website, as well as some close friends who I have instructed to test the site.
+
+## Manual Testing
+
+## User Story Testing
+
+1. As a user I can use the recover password options so that to recover my password in case i forget
+
+    - The 'Forgot Password' option at the bottom of the login page was used to test this. A link is then sent to the user through email, so I tested this with an already-sent email to be sure the link was received.
+
+    - The user must wait for the password reset link to be received before using it. Once it does, they are directed to a website where they must input their old password twice in order to reset it. The user is led to a confirmation page with a bootstrap toast displaying a success message after entering the new password. An error notice alerts the user so they can try again if the passwords do not match.
+
+
+2. As a user I can easily register for an account on the website so that receive benefits of a logged in user
+
+    - This was tested by registering a couple of user accounts and:
+        - making sure they worked by logging out and back in.
+        - clicking the confirmation link in the email
+        - scanning for verified email addresses in the admin panel.
+        - using an already-existing email address to attempt to create an account
+        - checked if logged in user can acess foodtracker section.
+        - checked if logged in user can acess review questions section.
+
+    - I also added an address to my profile and made an attempt to complete a checkout to test the information. The address saved in the profile was automatically filled up on the checkout page as a result. To further test this, I placed an order while making sure the user's profile address was saved and the box to save details to the profile was checked.
+
+ 3. As a user I can search by using a simple searchbar so that i can find exactly what product I want to buy
+    - I tested this by searching using the search bar in the footer and also by searching through the category links
+
+
+4. As a user I can sort product by specific category easily so that i can choose which type of product I want
+
+    - I went to the all product section and tested all the sorting options. 
+        - this included : Sort by name, sort by category and sort by price.
+        - all of those options returned expected results
+
+
+6. As a user I can see my order details so that i can verify my purchase
+    - I selected a product put in the detail such as size and material, then I clicked add to bag and secure checkout
+    - I was presented with the order details after I clicked on secure checkout
+    - I tried multiple times with various values trying to trick the form but it worked every time
+
+7. As a user I can pay safely without having to worry about my details being stolen so that i can shop with confidence
+    - If the user has an account, address details can be saved and updated/removed as needed. By adding and deleting addresses from the profile page, this was put to the test. In order to verify that the address was saved on the User's Profile page after checkout, it was also inserted and saved to the profile.
+
+    - The project makes use of Stripe to handle payments, protecting customer payment information and preventing it from being saved in their user profile.
+
+8. As a user I can adjust the products in my cart so that I can remove them if needed or add more products
+    - I added a product to my cart then went to the cart page
+    - Once on the page i was presented with the correct information as expected
+    - I deleted the product succesfully and was greeted with product removed toast
+    - I added more products via the keep shopping button and the cart was updated
+    - I tried multiple times to trick the system by refreshing the page etc.
+
+9. As a user I can buy products without being logged in  so that I dont need to create an account before buying
+    - Without being logged in, I added a product to cart and went to secure checkout , added the information such as name adress etc, and the payment went trough with no errors, as I was taken to the product sucess page with the details such as the product price and delivery info
+
+10. As a user I can easily view a list of products ** so that ** I can decide what to buy
+    - Once I clicked on any of the product categories from the navigation I was presented with the product cards and prices.
+    - The products are displayed using bootstrap cards and are very responsive due to their classes, which means the layout of the cards changes with screen size.
+    - All images are displayed inside the cards with no problems.
+
+11. As a user I can click on a specific product  so that see relevant information about its caracteristics
+    - I clicked on a product with the picture of a keychain, it took me to the product detail page
+    - On the page it shows specific details related to that product in particular
+    - These details included size, material,color etc.
+    - I checked different products to see if any of the name or description was the same and all of them were different
+
+12. As a user I can sign up for the newsletter so that i can receive the latest updates
+    - On the home page the user can subscribe by providing their email and clicking submit . A warning shows below the email box if there is a problem with the email. If successful, a success message is displayed instead.
+
+    - By subscribing with a test email and logging into Mailchimp to view the contacts, the subscription was tested. After making sure the contact was present, I scanned the page to check if they had subscribed and was also able to send newsletter campaigns to subscribed emails.
+
+13. As a user I can add payment info easily when checking out so that I dont have to spend much time before buying
+    - Submitted an order while simply filling out the checkout form's mandatory information. Both Stripe and the Database successfully processed the order, which was also recorded with a success Webhook message.
+
+    - Attempted to place an order using the wrong card information. The wrong details are confirmed by an error message that displays beneath the card details form.
+
+    - Tried to place an order with a card that has expired. The card has expired, according to an error message that displays beneath the card details form.
+
+    - Attempting to send a purchase order with a missing order form. All blank necessary fields notify the user that they must be filled out in order for the form to be finished and submitted.
+
+14. As a user I can visit their facebook store page so that interact with the comunity closer
+    - I scrolled down to the footer where the facebook icon is located
+    - Click on the Icon and was taken directly to their facebook page
+    - It opened in a new window as expected and didnt close the previous one
+
+15. As a user I can add products into my shopping cart  so that I can see how much i am spending and the total cost
+    - I checked to make sure the right product was added before adding an item to the cart.
+
+    - In order to make sure the quantity in the cart matched what was added, I raised the quantity before adding it.
+
+16. As a user I can receive a confirmation email when registering so that click the confirmation link be sure i am registered
+    - By sending an order to an email address that can be verified, email confirmation was tried. The right order data and a contact email were included in an email confirmation that was sent in accordance with the template set up in the checkout app.
+
+
+17. As a superuser I can add products so that I can have more products available to buy
+    - Both the Admin Panel and the project management page, which can be accessed by clicking on "My Account," can be used to add products. Both methods of adding products were evaluated, and the products that were tested could be seen both in the models as well as in the page.
+
+18. As a superuser I can edit a product so that I can change its price, details, description
+    - You can edit a product entry in two ways, one using the admin panel and another using the edit button which appears if youre logged in as superuser.
+    - I checked if that edit button appeared otherwise and it didnt if youre not a superuser.
+    - Clicked the edit button and was able to edit every single field , price description etc
+    - Also checked the admin panel for editing and it was the same situation everything worked without issue
+
+19. As a superuser I can change a normal users permisions so that I can stop a user from using my website if needed
+    - That can be done from the admin panel by clicking on their email and selecting the remove option.
+
+20. As a superuser I can send emails to customers so that **I can more easily market my available stock of products or send them news about our store
+    - When a customer signs up for emails, their information is added to the company's Mailchimp contacts list, where they can later be removed.
+
+    - This was checked by sending an email to subscribe and then verifying that it was received by checking the Mailchimp email list. In order to make sure it was simple to remove an email from the email list, I also looked at the unsubscribe functionality.
+
+21. As a superuser I can add different categories of products or change existing categories** so that I am able to manage each entry properly
+    - I tested this by logging into the admin panel and clicking on the categories section and then click on the plus button.
+    - I could indeed add a new category to a product by selecting from a list of women men acessories preworkouts etc.
+
+
+22. As a superuser I can delete a product entry so that I can manage my website properly and remove old products when they aren't available**
+    - I tested this by clicking delete on a product in the admin panel or on the product management, once i clicked i was taken to a delete confirmation page
+    - If you confirm delete , it removes the product from the database and its no longer available in any of the products view including all products.
+    - I tested to see if you could return to that old product but , i was greeted with a 404 error page.
+
+
+
+## Site Features Testing
+
+
+| Feature| Acceptance Criteria | Tests Carried out | Result |  
+| --- | --- | --- | --- | 
+| Admin CRUD | Admin account can create/update/delete any product entry | Created admin account, logged in and clicked every button for create, update, or delete | Pass |
+| Admin restricted access | Access to admin page is not available to normal users | Created a normal user and attempted to log into the admin page | Pass |
+| Non Authenticated check profile  | Myprofile option isn't visible | Logged out and refreshed the page to test if I can still go into myprofile | Pass |  
+| Non Authenticated admin user/ product management  | Product management is not available if logged out | Logged out and refreshed the page many times, clicked on different pages of the website to check if the product management page was visible | Pass | 
+| Registration/ left blank | A message appearing that says "fill out this field" | Attempted to create an account with fields left blank or adding a space and then clicking sign up | Pass | 
+| Registration/ bad email | A message appearing that instructs you about the email address format | Tried creating an account by using random letters and numbers, also by not finishing the address after "@" | Pass | 
+| Registration/ Common Password | A message appearing that instructs you the password is too common | Added a password that was very simple and easy to guess such as "password" | Pass | 
+| Registration/ Short Password | A message appearing that says your password is too short and it must contain 8 characters | Created an account and added password "123" | Pass | 
+| Login/ Blank Field | A message instructing you to fill out this field | Attempted to log in without filling up the username field | Pass | 
+| Login/ Incorrect Username | A message that says "username or password you specified are not correct" | Tried logging in with random letters and numbers in the username field | Pass |
+| Login/ Incorrect Password | A message that says "username or password you specified are not correct" | Tried logging in with random letters and numbers in the password field | Pass |
+| Logged in/ save details  | The save details tickbox is available and works | Created a new user, logged in, and clicked on the checkbox after inputting my details | Pass | 
+| Logged in/ billing details saved  | Billing details saved from previous purchases | Created a new user and logged in, made a purchase and saved the details, added another product to my cart and when I checked out, details were saved | Pass | 
+| Post Product Entry/ no image | The admin needs to insert a image when adding product | Created a new account and logged in, created a new post but didn't upload a picture and was not able to finish adding the entry untill I added a image | Pass |
+| Post Product Entry/ Blank Fields | Not allowed to post if required fields are empty | Logged in as admin and left every field empty and pressed on submit | Pass |
+| Delete product entry/ not admin | Button shouldn't be visible | Logged in on admin, noticed the delete button is visible then logged into a normal user but the button wasn't visible | Pass |
+| Subscribe mailchimp | Submit button should work after you add your email | Added email in the form and clicked submit, also added a bad email and got an error | Pass | 
+| Delete product entry page | Page should be refreshed after deleting a product on django admin panel and website | Clicked on a product entry, was taken to details page and clicked on delete, it took me to a new page | Pass |
+| Message/ login | Message appears confirming successful login | Logged in on an account | Pass |
+| Logout Page | Page pops up asking the user to confirm logout | Clicked on log out button | Pass |
+| Message/ logout | Message appears confirming successful logout | Clicked on the log out button and then again on log out | Pass |
+| Message/ Admin Post Product | Message appears confirming your successful post | Product management > filled out the form and pressed submit, message appeared | Pass |
+| Search bar | Search bar should return a product related to your search | Searched for the word "shirt" and it returned shirt products | Pass |
+| Category dropdown menu | A menu should drop down revealing the sort options | Clicked on the drop-down and the sort by options were revealed | Pass |
+| Secure Checkout | Adding bad credit card information should return an error | Added 0000 in all fields and the error message appeared | Pass |
+| Forgot Password | Clicking on forgot password in the login should take you to a password reset page | Clicked on forgot password and it took me to a password reset page | Pass |
+| Admin / Edit | The edit option should be visible if you're an admin | Logged in as an admin and the option is visible and clickable | Pass |
+| Footer Socials | Social icons appear in the footer and open their pages in a new tab | Clicked on the social icons on the bottom of the page | Pass |
+
+
+## Validator Testing
+
+### CSS Validator
+I ran the every CSS code I created through W3C Validator and returned no errors:
+![header](media/css.PNG)
+![header](media/css.PNG)
+![header](media/css.PNG)
+![header](media/css.PNG)
+![header](media/css.PNG)
+### HTML Validator
+I ran the entire website through HTML Validator and every html template used and returned no errors:
+![header](media/htmlvalidator.JPG)
+###
+I also used Lighthouse on most pages and they were all good scores, Accesibility is barely not in the green because of stylistic choices
+![header](media/lighthouse.JPG)
+### Pep8 Validator
+#### I used the "black" feature to check python code in most pages and it returned no error.
